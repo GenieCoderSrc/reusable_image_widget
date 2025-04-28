@@ -10,6 +10,7 @@ class AppCircleAvatar extends StatelessWidget {
   final double? radius;
   final double? scale;
 
+
   const AppCircleAvatar(
       {super.key,
       this.img,
