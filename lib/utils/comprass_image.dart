@@ -10,7 +10,7 @@ Future<XFile> compressImage(XFile file, {int quality = 35}) async {
     final String targetPath = p.join((await getTemporaryDirectory()).path,
         '${DateTime.now()}.${p.extension(file.path)}');
     final XFile? compressedFile =
-        (await FlutterImageCompress.compressAndGetFile(
+    (await FlutterImageCompress.compressAndGetFile(
       file.path,
       targetPath,
       quality: quality,

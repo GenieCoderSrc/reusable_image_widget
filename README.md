@@ -21,7 +21,7 @@ Reusable Flutter widgets and utilities for picking, cropping, compressing, and d
 Add this to your `pubspec.yaml`:
 
 ```yaml
-reusable_image_widget: ^0.0.1
+reusable_image_widget: ^0.0.2
 ```
 
 Then run:
