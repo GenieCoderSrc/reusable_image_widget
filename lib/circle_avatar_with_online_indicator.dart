@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widgets/indicator/online_indicator.dart';
+import 'package:online_indicator/online_indicators.dart';
 
 import 'app_circle_avatar.dart';
 import 'image_style_constant.dart';

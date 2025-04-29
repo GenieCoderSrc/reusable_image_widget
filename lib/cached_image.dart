@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:widgets/loading/shimmer.dart';
+import 'package:loading_builder/shimmer.dart';
 
 import 'constants/default_image_path.dart';
 

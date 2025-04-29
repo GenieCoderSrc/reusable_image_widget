@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:reusable_bottom_sheet/bottom_sheet.dart';
 import 'package:reusable_image_widget/view_models_image_picker/image_picker_cubit.dart';
-import 'package:widgets/bottom_sheet/bottom_sheet.dart';
 
+import 'app_circle_avatar.dart';
 import 'image_source_selector.dart';
 
 class AppImagePicker extends StatelessWidget {

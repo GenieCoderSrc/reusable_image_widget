@@ -1,7 +1,9 @@
 name: reusable_image_widget
-description: "A new Flutter package project."
+description: "A reusable Flutter widget library for picking, cropping, compressing, and displaying images from gallery, camera, or network with full-screen preview support."
 version: 0.0.1
-homepage:
+homepage: https://github.com/GenieCoderSrc/reusable_image_widget
+repository: https://github.com/GenieCoderSrc/reusable_image_widget
+issue_tracker: https://github.com/GenieCoderSrc/reusable_image_widget/issues
 
 
 environment:
@@ -20,13 +22,9 @@ dependencies:
   flutter_image_compress: ^2.4.0
   image_cropper: ^8.1.0
   app_style: ^0.0.1
-
-  online_indicator:
-    path: ../online_indicator
-  loading_builder:
-    path: ../loading_builder
-  reusable_bottom_sheet:
-    path: ../reusable_bottom_sheet
+  online_indicator: ^0.0.2
+  loading_builder: ^0.0.2
+  reusable_bottom_sheet: ^0.0.2
 
 dev_dependencies:
   flutter_test:
@@ -39,6 +37,8 @@ dev_dependencies:
 # The following section is specific to Flutter packages.
 flutter:
 
+example:
+  path: example
   # To add assets to your package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
