@@ -21,7 +21,7 @@ Reusable Flutter widgets and utilities for picking, cropping, compressing, and d
 Add this to your `pubspec.yaml`:
 
 ```yaml
-reusable_image_widget: ^0.0.2
+reusable_image_widget: <latest_version>
 ```
 
 Then run:
@@ -127,4 +127,3 @@ MIT License
 **reusable_image_widget** developed and maintained by Shohidul Islam
 
 Feel free to contribute, open issues, and submit pull requests!
-

@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.2+1
+- replested image_picker Cubit in view Model.
+
 ## 0.0.2
 - Error Fixed `comprass_image.dart` file.
 
