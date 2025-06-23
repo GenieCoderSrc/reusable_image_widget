@@ -30,11 +30,15 @@ class ImagePickerCubit extends Cubit<File?> {
       );
 
       if (pickedFile != null) {
-        pickedFile =
-            (await cropImage(pickedFile: pickedFile, context: context));
+        pickedFile = (await cropImage(
+          pickedFile: pickedFile,
+          context: context,
+        ));
 
-        pickedFile =
-            await compressImage(pickedFile, quality: imageQuality ?? 100);
+        pickedFile = await compressImage(
+          pickedFile,
+          quality: imageQuality ?? 100,
+        );
 
         File image = File(pickedFile.path);
 

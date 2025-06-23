@@ -14,11 +14,12 @@ class BuildAvatarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget? imageViewer = appImageViewer(
-      imageSource: imageSource ?? kProfileIconPath,
-      imageFile: img,
-    );
-    final imageProvider = appImageProvider(
+    // final Widget? imageViewer = appImageViewer(
+    //   imageSource: imageSource ?? kProfileIconPath,
+    //   imageFile: img,
+    // );
+
+    final ImageProvider? imageProvider = appImageProvider(
       imageSource: imageSource ?? kProfileIconPath,
       imageFile: img,
     );
