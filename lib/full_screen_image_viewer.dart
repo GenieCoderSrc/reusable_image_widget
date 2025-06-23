@@ -16,10 +16,10 @@ class FullScreenImageViewer extends StatefulWidget {
       {super.key, this.imageSource, this.image, this.title, this.heroTag});
 
   @override
-  _FullScreenImageViewerState createState() => _FullScreenImageViewerState();
+  FullScreenImageViewerState createState() => FullScreenImageViewerState();
 }
 
-class _FullScreenImageViewerState extends State<FullScreenImageViewer> {
+class FullScreenImageViewerState extends State<FullScreenImageViewer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

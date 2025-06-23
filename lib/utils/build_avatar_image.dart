@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:reusable_image_widget/app_image_provider.dart';
 import 'package:reusable_image_widget/constants/default_image_path.dart';
 
-import '../app_image_viewer.dart';
+// import '../app_image_viewer.dart';
 
 class BuildAvatarImage extends StatelessWidget {
   const BuildAvatarImage({super.key, this.imageSource, this.img});
