@@ -14,7 +14,7 @@ class ImagePickerCubit extends Cubit<File?> {
 
   final ImagePicker _picker = ImagePicker();
 
-  onPickImage({
+  Future<void> onPickImage({
     required ImageSource imageSource,
     required BuildContext context,
     double? maxHeight,
@@ -49,5 +49,5 @@ class ImagePickerCubit extends Cubit<File?> {
     }
   }
 
-  clear() => emit(null);
+  void clear() => emit(null);
 }
