@@ -3,51 +3,69 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:reusable_image_widget/utils/comprass_image.dart';
-import 'package:reusable_image_widget/utils/crop_image.dart';
+import 'package:reusable_image_widget/services/app_image_picker_service.dart';
+import 'package:reusable_image_widget/services/i_services/i_image_compressor_service.dart';
+import 'package:reusable_image_widget/services/i_services/i_image_cropper_service.dart';
 
 part 'image_picker_state.dart';
 
-class ImagePickerCubit extends Cubit<File?> {
-  ImagePickerCubit() : super(null);
+class ImagePickerCubit extends Cubit<ImagePickerState> {
+  final AppImagePickerService pickerService;
+  final IImageCropperService cropperService;
+  final IImageCompressorService compressorService;
 
-  final ImagePicker _picker = ImagePicker();
+  ImagePickerCubit({
+    required this.pickerService,
+    required this.cropperService,
+    required this.compressorService,
+  }) : super(ImagePickerInitial());
 
   Future<void> onPickImage({
-    required ImageSource imageSource,
     required BuildContext context,
+    required ImageSource source,
+    bool crop = false,
+    bool compress = false,
+    int quality = 35,
     double? maxHeight,
     double? maxWidth,
-    int? imageQuality,
   }) async {
+    emit(ImagePickerLoading());
+
     try {
-      XFile? pickedFile = await _picker.pickImage(
-        source: imageSource,
-        maxWidth: maxHeight,
+      final (file, bytes) = await pickerService.pickImage(
+        source: source,
         maxHeight: maxHeight,
-        imageQuality: imageQuality,
+        maxWidth: maxWidth,
+        imageQuality: quality,
       );
 
-      if (pickedFile != null) {
-        pickedFile = (await cropImage(
-          pickedFile: pickedFile,
-          context: context,
-        ));
+      if (!kIsWeb && file != null) {
+        XFile xfile = XFile(file.path);
 
-        pickedFile = await compressImage(
-          pickedFile,
-          quality: imageQuality ?? 100,
-        );
+        if (crop) {
+          xfile = await cropperService.cropImage(
+            pickedFile: xfile,
+            context: context,
+          );
+        }
 
-        File image = File(pickedFile.path);
+        if (compress) {
+          xfile = await compressorService.compressImage(
+            xfile,
+            quality: quality,
+          );
+        }
 
-        emit(image);
+        emit(ImagePickerSuccess(file: File(xfile.path)));
+      } else {
+        emit(ImagePickerSuccess(bytes: bytes));
       }
     } catch (e) {
-      debugPrint('ImagePickerCubit | onPickImage | error: $e');
+      emit(ImagePickerFailure('Failed to pick image: $e'));
     }
   }
 
-  void clear() => emit(null);
+  void clear() => emit(ImagePickerInitial());
 }

@@ -1,10 +1,22 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:reusable_image_widget/reusable_image_widget.dart';
 
+// main.dart snippet
+
 void main() {
-  runApp(const MyApp());
+  registerReusableImageWidgetDependencies();
+  initReusableImageWidgetBlocProvider();
+
+  runApp(
+    MultiBlocProvider(
+      providers: reusableImageWidgetBlocProviders,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -12,78 +24,50 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Reusable Image Widget Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ImagePickerExample(),
-    );
+    return MaterialApp(home: const AvatarImagePickerExample());
   }
 }
 
-class ImagePickerExample extends StatefulWidget {
-  const ImagePickerExample({super.key});
+// example/avatar_image_picker_example.dart
+
+class AvatarImagePickerExample extends StatefulWidget {
+  const AvatarImagePickerExample({super.key});
 
   @override
-  State<ImagePickerExample> createState() => _ImagePickerExampleState();
+  State<AvatarImagePickerExample> createState() =>
+      _AvatarImagePickerExampleState();
 }
 
-class _ImagePickerExampleState extends State<ImagePickerExample> {
-  File? selectedImage;
+class _AvatarImagePickerExampleState extends State<AvatarImagePickerExample> {
+  File? _pickedFile;
+  Uint8List? _pickedBytes;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Reusable Image Widget Example'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            AvatarImagePicker(
-              // initialFile: selectedImage,
-              onChanged: (File? image) {
-                setState(() {
-                  selectedImage = image;
-                });
-              },
-            ),
-            const SizedBox(height: 24),
-            const Divider(),
-            const SizedBox(height: 16),
-            Text(
-              'Preview:',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 12),
-            selectedImage != null
-                ? GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => FullScreenImageViewer(
-                      imageSource: selectedImage!.path,
-                    ),
-                  ),
-                );
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.file(
-                  selectedImage!,
-                  width: 200,
-                  height: 200,
-                  fit: BoxFit.cover,
-                ),
-              ),
-            )
-                : const Text('No image selected.'),
-          ],
+      appBar: AppBar(title: const Text('Avatar Image Picker Example')),
+      body: Center(
+        child: AvatarImagePicker(
+          imageSource: 'assets/images/default_avatar.png',
+          imageQuality: 85,
+          maxHeight: 500,
+          maxWidth: 500,
+          crop: true,
+          compress: true,
+          cameraEnabled: true,
+          galleryEnabled: true,
+          onChanged: (File? file, Uint8List? bytes) {
+            setState(() {
+              _pickedFile = file;
+              _pickedBytes = bytes;
+            });
+          },
         ),
       ),
     );
   }
+
+
 }
+
+

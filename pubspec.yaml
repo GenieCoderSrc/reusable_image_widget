@@ -26,6 +26,9 @@ dependencies:
   online_indicator: ^0.0.2
   loading_builder: ^0.0.3
   reusable_bottom_sheet: ^0.0.2
+  image_gallery_saver: ^2.0.3
+  permission_handler: ^12.0.1
+  get_it_di_global_variable: ^0.0.5
 
 dev_dependencies:
   flutter_test:
