@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reusable_bottom_sheet/bottom_sheet.dart';
+import 'package:reusable_image_widget/core/typedefs.dart';
 import 'package:reusable_image_widget/view_models/image_picker_cubit/image_picker_cubit.dart';
 
 import 'app_image_viewer.dart';
@@ -27,8 +28,8 @@ class AppImagePicker extends StatelessWidget {
   });
 
   final String? initialImageSource;
-  final Widget Function(File? file, Uint8List? bytes)? builder;
-  final void Function(File? file, Uint8List? bytes)? onChanged;
+  final WidgetImageDataCallback? builder;
+  final VoidImageDataCallback? onChanged;
 
   final int imageQuality;
   final double? maxHeight;

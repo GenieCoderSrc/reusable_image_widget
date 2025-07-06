@@ -31,4 +31,6 @@ export 'views/widgets/profile/circle_avatar_with_online_indicator.dart';
 export 'views/widgets/profile/edit_avatar_icon.dart';
 export 'views/widgets/profile/image_with_title.dart';
 
+export 'package:reusable_image_widget/core/typedefs.dart';
+
 

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:reusable_image_widget/core/typedefs.dart';
 
 import 'app_image_picker.dart';
 import 'profile/avatar_image_viewer.dart';
@@ -30,7 +31,7 @@ class AvatarImagePicker extends StatelessWidget {
   final String? imageSource;
 
   /// Callback triggered when the image is picked (either file or bytes)
-  final void Function(File? file, Uint8List? bytes)? onChanged;
+  final VoidImageDataCallback? onChanged;
 
   /// Controls how much the image should be compressed (0-100)
   final int imageQuality;
