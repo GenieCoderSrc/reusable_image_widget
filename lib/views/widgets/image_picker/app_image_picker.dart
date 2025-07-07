@@ -1,17 +1,13 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:reusable_bottom_sheet/bottom_sheet.dart';
 import 'package:reusable_image_widget/core/typedefs.dart';
 import 'package:reusable_image_widget/view_models/image_picker_cubit/image_picker_cubit.dart';
 
-import 'app_image_viewer.dart';
+import '../app_image_viewer.dart';
+import 'app_image_picker_error_widget.dart';
 import 'image_source_selector.dart';
 
-/// General purpose image picker widget with cropping, compressing, loading & error handling.
 class AppImagePicker extends StatelessWidget {
   const AppImagePicker({
     super.key,
@@ -47,7 +43,7 @@ class AppImagePicker extends StatelessWidget {
       child: BlocConsumer<ImagePickerCubit, ImagePickerState>(
         listener: (context, state) {
           if (state is ImagePickerSuccess) {
-            onChanged?.call(state.file, state.bytes);
+            onChanged?.call(state.pickedFile);
           }
         },
         builder: (context, state) {
@@ -56,46 +52,30 @@ class AppImagePicker extends StatelessWidget {
           }
 
           if (state is ImagePickerFailure) {
-            return _buildErrorWidget(context, state.message);
+            return AppImagePickerErrorWidget(
+              message: state.message,
+              onRetry: () => _handleTap(context),
+            );
           }
 
           if (state is ImagePickerSuccess) {
-            return _buildChild(context, state.file, state.bytes);
+            return builder != null
+                ? builder!(state.pickedFile)
+                : AppImageViewer(
+                  pickedFile: state.pickedFile,
+                  imageSource: initialImageSource,
+                );
           }
 
           // Initial state
-          return _buildChild(context, null, null);
+          return builder != null
+              ? builder!(null)
+              : AppImageViewer(
+                pickedFile: null,
+                imageSource: initialImageSource,
+              );
         },
       ),
-    );
-  }
-
-  Widget _buildErrorWidget(BuildContext context, String message) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Icon(Icons.error_outline, color: Colors.red, size: 40),
-        const SizedBox(height: 8),
-        Text(message, style: const TextStyle(color: Colors.red)),
-        const SizedBox(height: 8),
-        ElevatedButton.icon(
-          onPressed: () => _handleTap(context),
-          icon: const Icon(Icons.refresh),
-          label: const Text('Retry'),
-        ),
-      ],
-    );
-  }
-
-  Widget _buildChild(BuildContext context, File? file, Uint8List? bytes) {
-    if (builder != null) {
-      return builder!(file, bytes);
-    }
-
-    return AppImageViewer(
-      imageFile: file,
-      imageBytes: bytes,
-      imageSource: initialImageSource,
     );
   }
 
@@ -118,22 +98,23 @@ class AppImagePicker extends StatelessWidget {
   }
 
   void _showSourceSelector(BuildContext context, ImagePickerCubit cubit) {
-    customBottomSheet(
+    showModalBottomSheet(
       context: context,
-      child: ImageSourceSelector(
-        onTap: (ImageSource source) {
-          Navigator.pop(context);
-          cubit.onPickImage(
-            context: context,
-            source: source,
-            crop: crop,
-            compress: compress,
-            quality: imageQuality,
-            maxHeight: maxHeight,
-            maxWidth: maxWidth,
-          );
-        },
-      ),
+      builder:
+          (_) => ImageSourceSelector(
+            onTap: (ImageSource source) {
+              Navigator.pop(context);
+              cubit.onPickImage(
+                context: context,
+                source: source,
+                crop: crop,
+                compress: compress,
+                quality: imageQuality,
+                maxHeight: maxHeight,
+                maxWidth: maxWidth,
+              );
+            },
+          ),
     );
   }
 }

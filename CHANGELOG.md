@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.5 – Jul 7, 2025
+
+### ✅ Updated
+
+- **Unified image handling with `XFile`**:
+  - Removed usage of `Uint8List` for `ImagePicker` output.
+  - `AppImagePicker`, `FullScreenImageViewer`, and related utilities now use `XFile` exclusively.
+- Refactored `AppImageResolver` and `appImageProvider()` to support all platforms via `XFile`.
+- Optimized widget structure to avoid duplicate storage of file and byte state.
+
+### 🛠️ Refactored
+
+- Removed legacy memory-based `Uint8List` image handling in favor of cleaner, async-free `XFile`-based rendering.
+- Ensured full support for web and native platforms using `Image.network()` and `FileImage()` as needed.
+
+---
+
 ## 0.0.4 – Jul 6, 2025
 
 ### ✨ Added
@@ -11,6 +28,7 @@ All notable changes to this project will be documented in this file.
   - `VoidImageDataCallback`
   - `WidgetImageDataCallback`
 
+---
 
 ## 0.0.3 – Jul 6, 2025
 
@@ -49,9 +67,13 @@ All notable changes to this project will be documented in this file.
 
 - Replaced `ImagePickerCubit` in view model.
 
+---
+
 ## 0.0.2 – Jun 24, 2025
 
 - Fixed error in `compress_image.dart` file.
+
+---
 
 ## 0.0.1 – Apr 29, 2025
 

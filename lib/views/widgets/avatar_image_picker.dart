@@ -2,9 +2,10 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/core/typedefs.dart';
 
-import 'app_image_picker.dart';
+import 'image_picker/app_image_picker.dart';
 import 'profile/avatar_image_viewer.dart';
 
 class AvatarImagePicker extends StatelessWidget {
@@ -69,10 +70,9 @@ class AvatarImagePicker extends StatelessWidget {
       cameraEnabled: cameraEnabled,
       galleryEnabled: galleryEnabled,
       onChanged: onChanged,
-      builder: (File? file, Uint8List? bytes) {
+      builder: (XFile? pickedFile) {
         return AvatarImageViewer(
-          imageFile: file,
-          imageBytes: bytes,
+          pickedFile: pickedFile,
           imageSource: imageSource,
           radius: radius,
           heroTag: heroTag,

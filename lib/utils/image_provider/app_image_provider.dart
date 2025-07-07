@@ -1,51 +1,44 @@
 // File: lib/views/widgets/app_image_provider.dart
 import 'dart:io' show File;
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/extensions/image_source_type_checker.dart';
 
 ImageProvider<Object>? appImageProvider({
   String? imageSource,
-  File? imageFile,
-  Uint8List? imageBytes,
+  XFile? pickedFile,
   double? scale,
 }) {
   try {
     debugPrint(
-      'appImageProvider | imageSource: $imageSource | file: $imageFile | bytes: ${imageBytes != null} | scale: $scale',
+      'appImageProvider | imageSource: $imageSource | pickedFile: $pickedFile | scale: $scale',
     );
 
-    // Web support: MemoryImage
-    if (kIsWeb && imageBytes != null) {
-      return MemoryImage(imageBytes, scale: scale ?? 1.0);
+    // Web: Use MemoryImage with bytes
+    if (kIsWeb && pickedFile != null) {
+      return NetworkImage(pickedFile.path);
     }
 
-    // FileImage (native only)
-    if (!kIsWeb && imageFile != null) {
-      return FileImage(imageFile, scale: scale ?? 1.0);
+    // Mobile/Desktop: Use FileImage
+    if (!kIsWeb && pickedFile != null) {
+      return FileImage(File(pickedFile.path), scale: scale ?? 1.0);
     }
 
-    // Network image
+    // Network Image
     if (imageSource != null && Uri.tryParse(imageSource)?.isAbsolute == true) {
-      return CachedNetworkImageProvider(
-        imageSource,
-        scale: scale ?? 1.0,
-        errorListener:
-            (error) => debugPrint(
-              'appImageProvider | CachedNetworkImageProvider | Failed to load $imageSource | error: $error',
-            ),
-      );
+      return CachedNetworkImageProvider(imageSource, scale: scale ?? 1.0);
     }
 
-    // Asset image
+    // Asset Image
     if (imageSource != null && imageSource.isAssetPath) {
-      return AssetImage(imageSource, bundle: null, package: null);
+      return AssetImage(imageSource);
     }
 
+    // Fallback
     return null;
   } catch (e) {
     debugPrint('appImageProvider | Exception: $e');

@@ -1,7 +1,5 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'app_image_viewer.dart';
 
@@ -9,8 +7,7 @@ class AppAvatarImage extends StatelessWidget {
   const AppAvatarImage({
     super.key,
     this.imageSource,
-    this.imageFile,
-    this.imageBytes,
+    this.pickedFile,
     this.radius = 40,
     this.borderRadius,
     this.isCircular = true,
@@ -19,8 +16,7 @@ class AppAvatarImage extends StatelessWidget {
   });
 
   final String? imageSource;
-  final File? imageFile;
-  final Uint8List? imageBytes;
+  final XFile? pickedFile;
   final double radius;
   final double? borderRadius;
   final bool isCircular;
@@ -31,8 +27,7 @@ class AppAvatarImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppImageViewer(
       imageSource: imageSource,
-      imageFile: imageFile,
-      imageBytes: imageBytes,
+      pickedFile: pickedFile,
       isCircular: isCircular,
       width: radius * 2,
       height: radius * 2,

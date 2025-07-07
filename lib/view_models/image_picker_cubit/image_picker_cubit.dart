@@ -1,9 +1,6 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/services/app_image_picker_service.dart';
 import 'package:reusable_image_widget/services/i_services/i_image_compressor_service.dart';
@@ -34,33 +31,29 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
     emit(ImagePickerLoading());
 
     try {
-      final (file, bytes) = await pickerService.pickImage(
+      XFile? pickedFile = await pickerService.pickImage(
         source: source,
         maxHeight: maxHeight,
         maxWidth: maxWidth,
         imageQuality: quality,
       );
 
-      if (!kIsWeb && file != null) {
-        XFile xfile = XFile(file.path);
-
+      if (pickedFile != null) {
         if (crop) {
-          xfile = await cropperService.cropImage(
-            pickedFile: xfile,
+          pickedFile = await cropperService.cropImage(
+            pickedFile: pickedFile,
             context: context,
           );
         }
 
         if (compress) {
-          xfile = await compressorService.compressImage(
-            xfile,
+          pickedFile = await compressorService.compressImage(
+            pickedFile,
             quality: quality,
           );
         }
 
-        emit(ImagePickerSuccess(file: File(xfile.path)));
-      } else {
-        emit(ImagePickerSuccess(bytes: bytes));
+        emit(ImagePickerSuccess(pickedFile: pickedFile));
       }
     } catch (e) {
       emit(ImagePickerFailure('Failed to pick image: $e'));

@@ -10,8 +10,6 @@ class ItemSelector extends StatelessWidget {
 
   final VoidCallback onTap;
 
-  // GestureTapCallback?
-
   final IconData? icon;
   final String title;
 

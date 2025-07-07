@@ -1,28 +1,24 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
 
-Future<String> downloadImage({
-  File? file,
-  Uint8List? imageBytes,
-  String? imageSource,
-}) async {
+/// Platform-aware image downloader.
+Future<String> downloadImage({XFile? pickedFile, String? imageSource}) async {
   try {
+    // 🔹 Handle Web platform separately
+    if (kIsWeb) return 'Download not supported on Web yet.';
+
     Uint8List? bytes;
 
-    if (kIsWeb) {
-      return 'Download not supported on Web yet.';
+    // 🔸 1. From picked file
+    if (pickedFile != null) {
+      bytes = await pickedFile.readAsBytes();
     }
 
-    // Determine bytes
-    if (imageBytes != null) {
-      bytes = imageBytes;
-    } else if (file != null) {
-      bytes = await file.readAsBytes();
-    } else if (imageSource != null) {
+    // 🔸 2. From image URL
+    if (bytes == null && imageSource != null) {
       final response = await http.get(Uri.parse(imageSource));
       if (response.statusCode == 200) {
         bytes = response.bodyBytes;
@@ -31,15 +27,18 @@ Future<String> downloadImage({
 
     if (bytes == null) return 'No image data to save.';
 
+    // 🔸 3. Request permission (Android)
     final status = await Permission.storage.request();
     if (!status.isGranted) {
       return 'Storage permission denied.';
     }
 
+    // 🔸 4. Save image
     final result = await ImageGallerySaver.saveImage(bytes);
-    return result['isSuccess'] == true
-        ? 'Image saved to gallery.'
-        : 'Failed to save image.';
+    final success =
+        result['isSuccess'] == true || result['isSuccess'] == 'true';
+
+    return success ? 'Image saved to gallery.' : 'Failed to save image.';
   } catch (e) {
     return 'Error saving image: $e';
   }

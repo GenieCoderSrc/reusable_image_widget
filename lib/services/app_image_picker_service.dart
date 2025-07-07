@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 
 class AppImagePickerService {
   final ImagePicker _picker = ImagePicker();
 
-  Future<(File?, Uint8List?)> pickImage({
+  Future<XFile?> pickImage({
     required ImageSource source,
     int? imageQuality,
     double? maxHeight,
@@ -20,16 +18,17 @@ class AppImagePickerService {
         maxWidth: maxWidth,
       );
 
-      if (file == null) return (null, null);
+      if (file == null) return file;
+      // if (file == null) return (null, null);
 
-      if (kIsWeb) {
-        return (null, await file.readAsBytes());
-      } else {
-        return (File(file.path), null);
-      }
+      // if (kIsWeb) {
+      //   return (null, await file.readAsBytes());
+      // } else {
+      //   return (File(file.path), null);
+      // }
     } catch (e) {
       debugPrint('AppImagePickerService | error: $e');
-      return (null, null);
+      return null;
     }
   }
 }

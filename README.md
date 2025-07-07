@@ -1,27 +1,34 @@
-# reusable_image_widget
+# reusable\_image\_widget
 
 Reusable Flutter widgets and utilities for picking, cropping, compressing, and displaying images with easy configuration
 and integrated state management.
 
 ---
 
-## Features
+## ✅ Features
 
-- Pick images from gallery or camera with a customizable picker
-- Crop images with custom aspect ratio presets
-- Compress images to reduce file size with quality control
-- Display images from assets, local files, network URLs, or raw bytes
-- Fullscreen image viewer with zoom, pan, double-tap zoom, swipe-to-dismiss, and download support
-- Circular and rectangular avatar widgets with editable overlay icons
-- Image placeholders and error handling with fallback support
-- State management with `ImagePickerCubit` using `flutter_bloc`
-- Integration-ready for dependency injection (GetIt)
+* Pick images from gallery or camera with a customizable picker
+* Crop images with custom aspect ratio presets
+* Compress images to reduce file size with quality control
+* Display images from:
+
+    * Network URL
+    * Assets
+    * Local files via `XFile`
+* Fullscreen image viewer with:
+
+    * Zoom, pan, double-tap zoom, swipe-to-dismiss
+    * Download image feature
+* Avatar widgets (circular/rectangular) with editable overlay icons
+* Custom placeholders and error handling
+* Built-in state management using `ImagePickerCubit`
+* Integration-ready for dependency injection (GetIt)
 
 ---
 
-## Installation
+## 🚀 Installation
 
-Add this to your `pubspec.yaml`:
+Add to your `pubspec.yaml`:
 
 ```yaml
 reusable_image_widget: <latest_version>
@@ -35,144 +42,124 @@ flutter pub get
 
 ---
 
-## Usage
+## 📦 Usage
 
-### Pick and Crop Image
+### ✨ Pick and Crop Image
 
 ```dart
-
-final XFile? pickedImage = await
-pickerService.pickImage
-(
-source: ImageSource.gallery,
-maxHeight: 500,
-maxWidth: 500,
-imageQuality: 85,
+final XFile? pickedImage = await pickerService.pickImage(
+  source: ImageSource.gallery,
+  maxHeight: 500,
+  maxWidth: 500,
+  imageQuality: 85,
 );
 
-final XFile croppedImage = await cropperService.cropImage(
-pickedFile: pickedImage
-!
-,
-context
-:
-context
-,
+final XFile? croppedImage = await cropperService.cropImage(
+  pickedFile: pickedImage!,
+  context: context,
 );
-
-```
-
-### Compress Image
-
-```dart
-
-final XFile compressedImage = await
-compressorService.compressImage
-(
-pickedImage
-,
-quality
-:
-85
-,
-);
-
-```
-
-### Use AvatarImagePicker (Recommended)
-
-```dart
-AvatarImagePicker
-(
-imageSource: 'assets/images/default_avatar.png',
-imageQuality: 85,
-maxHeight: 500,
-maxWidth: 500,
-crop: true,
-compress: true,
-onChanged: (File? file, Uint8List? bytes) {
-// Handle updated image file or bytes
-},
-)
-
-```
-
-### Display Avatar Image
-
-```dart
-AvatarImageViewer
-(
-imageFile: pickedFile,
-imageSource: 'https://example.com/profile.jpg',
-radius: 40,
-showEditIcon: true,
-onTapEdit: () {
-// Open picker or handle edit action
-},
-)
-
-```
-
-### Use AppCircleAvatar
-
-```dart
-AppCircleAvatar
-(
-imageSource: 'https://example.com/profile.jpg',
-radius: 40,
-)
-```
-
-### Fullscreen Image Viewer
-
-```dart
-Navigator.of
-(
-context).push(
-MaterialPageRoute(
-builder: (_) => FullScreenImageViewer(
-imageFile: file,
-imageBytes: bytes,
-imageSource: imageUrl,
-heroTag: 'profile-avatar'
-,
-)
-,
-)
-,
-);
-
-```
-
-### Using AppImagePicker with Bloc
-
-Make sure to provide `ImagePickerCubit` via `BlocProvider` and register dependencies with GetIt:
-
-```dart
-AppImagePicker
-(
-crop: true,
-compress: true,
-onChanged: (file, bytes) {
-// Handle image selection
-},
-)
-
 ```
 
 ---
 
-## Dependency Injection and Bloc Setup
+### ✨ Compress Image
 
-Register services and cubit with GetIt:
+```dart
+final XFile compressedImage = await compressorService.compressImage(
+  pickedImage,
+  quality: 85,
+);
+```
+
+---
+
+### 🎯 Use AvatarImagePicker (Recommended)
+
+```dart
+AvatarImagePicker(
+  imageSource: 'assets/images/default_avatar.png',
+  imageQuality: 85,
+  maxHeight: 500,
+  maxWidth: 500,
+  crop: true,
+  compress: true,
+  onChanged: (file) {
+    // Handle updated image file
+  },
+);
+```
+
+---
+
+### 🖼️ Display Avatar Image
+
+```dart
+AvatarImageViewer(
+  xFile: pickedFile,
+  imageSource: 'https://example.com/profile.jpg',
+  radius: 40,
+  showEditIcon: true,
+  onTapEdit: () {
+    // Open picker or handle edit action
+  },
+);
+```
+
+---
+
+### 👤 Use AppCircleAvatar
+
+```dart
+AppCircleAvatar(
+  imageSource: 'https://example.com/profile.jpg',
+  radius: 40,
+);
+```
+
+---
+
+### 🔍 Fullscreen Image Viewer
+
+```dart
+Navigator.of(context).push(
+  MaterialPageRoute(
+    builder: (_) => FullScreenImageViewer(
+      pickedFile: pickedFile,
+      imageSource: imageUrl,
+      heroTag: 'profile-avatar',
+    ),
+  ),
+);
+```
+
+---
+
+### 🧠 Using AppImagePicker with Bloc
+
+Ensure `ImagePickerCubit` is provided via `BlocProvider` and dependencies are registered via `GetIt`.
+
+```dart
+AppImagePicker(
+  crop: true,
+  compress: true,
+  onChanged: (file) {
+    // Handle selected image
+  },
+);
+```
+
+---
+
+## 🛠️ Dependency Injection & Bloc Setup
+
+Register services and cubit using `GetIt`:
 
 ```dart
 void registerReusableImageWidgetDependencies() {
   sl.registerLazySingleton<AppImagePickerService>(() => AppImagePickerService());
   sl.registerLazySingleton<IImageCropperService>(() => AppImageCropperService());
   sl.registerLazySingleton<IImageCompressorService>(() => AppImageCompressorService());
-  sl.registerFactory(() =>
-      ImagePickerCubit(
+  sl.registerFactory(() => ImagePickerCubit(
         pickerService: sl<AppImagePickerService>(),
         cropperService: sl<IImageCropperService>(),
         compressorService: sl<IImageCompressorService>(),
@@ -180,54 +167,49 @@ void registerReusableImageWidgetDependencies() {
 }
 ```
 
-Add the cubit provider in your widget tree:
+Wrap your app with the cubit provider:
 
 ```dart
-MultiBlocProvider
-(
-providers: [
-BlocProvider<ImagePickerCubit>(create: (_) => sl<ImagePickerCubit>()),
-// other providers...
-],
-child: MyApp(),
-)
-
-
+MultiBlocProvider(
+  providers: [
+    BlocProvider<ImagePickerCubit>(create: (_) => sl<ImagePickerCubit>()),
+    // other providers...
+  ],
+  child: MyApp(),
+);
 ```
 
 ---
 
-## Dependencies
+## 📦 Dependencies
 
-- `flutter`
-- `image_picker`
-- `image_cropper`
-- `flutter_image_compress`
-- `cached_network_image`
-- `photo_view`
-- `flutter_bloc`
-- `get_it`
-
----
-
-## Example
-
-See the `example/` directory for a full example implementation demonstrating the usage of the widgets and cubit.
+* `flutter`
+* `image_picker`
+* `image_cropper`
+* `flutter_image_compress`
+* `cached_network_image`
+* `photo_view`
+* `flutter_bloc`
+* `get_it`
 
 ---
 
-## License
+## 📁 Example
 
-© MIT License.
+See the [`example/`](example/) directory for a full implementation.
 
 ---
 
-## Author
+## 📄 License
 
-**reusable_image_widget** Developed with ❤️ by [Shohidul Islam](https://github.com/ShohidulProgrammer)
+Licensed under the MIT License.
 
+---
+
+## 👨‍💼 Author
+
+**reusable\_image\_widget**
+Developed with ❤️ by [Shohidul Islam](https://github.com/ShohidulProgrammer)
 Contributions, issues, and pull requests are welcome!
-
-
 
 ---

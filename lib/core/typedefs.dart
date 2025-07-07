@@ -1,8 +1,8 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-typedef ImageDataCallback =  Function(File? file, Uint8List? bytes);
-typedef VoidImageDataCallback = void Function(File? file, Uint8List? bytes);
-typedef WidgetImageDataCallback = Widget Function(File? file, Uint8List? bytes);
+typedef ImageDataCallback = Function(XFile? xFile);
+typedef VoidImageDataCallback = void Function(XFile? file);
+typedef WidgetImageDataCallback = Widget Function(XFile? xFile);

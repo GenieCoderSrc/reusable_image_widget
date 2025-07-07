@@ -12,13 +12,12 @@ class ImagePickerInitial extends ImagePickerState {}
 class ImagePickerLoading extends ImagePickerState {}
 
 class ImagePickerSuccess extends ImagePickerState {
-  final File? file;
-  final Uint8List? bytes;
+  final XFile? pickedFile;
 
-  const ImagePickerSuccess({this.file, this.bytes});
+  const ImagePickerSuccess({this.pickedFile});
 
   @override
-  List<Object?> get props => [file?.path, bytes];
+  List<Object?> get props => [pickedFile?.path];
 }
 
 class ImagePickerFailure extends ImagePickerState {

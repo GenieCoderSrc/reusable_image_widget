@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'app_image_viewer.dart';
 
@@ -10,8 +11,7 @@ class AppRectangleAvatar extends StatelessWidget {
   const AppRectangleAvatar({
     super.key,
     this.imageSource,
-    this.imageFile,
-    this.imageBytes,
+    this.pickedFile,
     this.height,
     this.width,
     this.radius = 12.0,
@@ -21,8 +21,7 @@ class AppRectangleAvatar extends StatelessWidget {
   });
 
   final String? imageSource;
-  final File? imageFile;
-  final Uint8List? imageBytes;
+  final XFile? pickedFile;
   final double? height;
   final double? width;
   final double radius;
@@ -34,8 +33,7 @@ class AppRectangleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppImageViewer(
       imageSource: imageSource,
-      imageFile: imageFile,
-      imageBytes: imageBytes,
+      pickedFile: pickedFile,
       width: width,
       height: height,
       borderRadius: radius,
