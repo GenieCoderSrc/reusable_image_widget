@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.0.6 – Jul 7, 2025
+
+### ✨ Added
+
+- `ImagePickerManager` class:
+- `MountedCheck` typedef for safe context handling across async gaps.
+
+### ✅ Updated
+
+- `ImagePickerCubit` now offloads side-effect operations to the manager layer.
+
+### 🛠️ Refactored
+
+- Restructured cropper service:
+- Improved separation of concerns across service, manager, and UI layers.
+
+---
+
+
 ## 0.0.5 – Jul 7, 2025
 
 ### ✅ Updated

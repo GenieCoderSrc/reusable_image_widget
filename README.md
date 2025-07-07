@@ -155,16 +155,18 @@ AppImagePicker(
 Register services and cubit using `GetIt`:
 
 ```dart
-void registerReusableImageWidgetDependencies() {
-  sl.registerLazySingleton<AppImagePickerService>(() => AppImagePickerService());
-  sl.registerLazySingleton<IImageCropperService>(() => AppImageCropperService());
-  sl.registerLazySingleton<IImageCompressorService>(() => AppImageCompressorService());
-  sl.registerFactory(() => ImagePickerCubit(
-        pickerService: sl<AppImagePickerService>(),
-        cropperService: sl<IImageCropperService>(),
-        compressorService: sl<IImageCompressorService>(),
-      ));
+void main() {
+  registerReusableImageWidgetDependencies();
+  initReusableImageWidgetBlocProvider();
+
+  runApp(
+    MultiBlocProvider(
+      providers: reusableImageWidgetBlocProviders,
+      child: const MyApp(),
+    ),
+  );
 }
+
 ```
 
 Wrap your app with the cubit provider:
