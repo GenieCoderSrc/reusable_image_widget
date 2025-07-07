@@ -80,7 +80,7 @@ class AppImageResolver {
   Widget Function(BuildContext, Object, StackTrace?) _errorBuilder(
     Widget? errorWidget,
   ) {
-    return (_, __, ___) => errorWidget ?? _defaultError();
+    return (_, _, _) => errorWidget ?? _defaultError();
   }
 
   Widget _defaultError() => const Icon(Icons.broken_image, size: 40);
