@@ -1,4 +1,5 @@
 import 'package:get_it_di_global_variable/get_it_di.dart';
+import 'package:reusable_image_widget/application/managers/image_picker_manager.dart';
 import 'package:reusable_image_widget/services/app_image_compressor_service.dart';
 import 'package:reusable_image_widget/services/app_image_cropper_service.dart';
 import 'package:reusable_image_widget/services/app_image_picker_service.dart';
@@ -18,12 +19,16 @@ void registerReusableImageWidgetDependencies() {
     () => AppImageCompressorService(),
   );
 
-  // --- Cubit ---
-  sl.registerFactory(
-    () => ImagePickerCubit(
+  sl.registerLazySingleton<ImagePickerManager>(
+    () => ImagePickerManager(
       pickerService: sl<AppImagePickerService>(),
       cropperService: sl<IImageCropperService>(),
       compressorService: sl<IImageCompressorService>(),
     ),
+  );
+
+  // --- Cubit ---
+  sl.registerFactory(
+    () => ImagePickerCubit(imagePickerManager: sl<ImagePickerManager>()),
   );
 }

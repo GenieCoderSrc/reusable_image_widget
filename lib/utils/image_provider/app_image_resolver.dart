@@ -51,8 +51,8 @@ class AppImageResolver {
           fit: fit,
           width: width,
           height: height,
-          placeholder: (_, __) => placeholder ?? _defaultLoading(),
-          errorWidget: (_, __, ___) => errorWidget ?? _defaultError(),
+          placeholder: (_, _) => placeholder ?? _defaultLoading(),
+          errorWidget: (_, _, _) => errorWidget ?? _defaultError(),
         );
       }
 

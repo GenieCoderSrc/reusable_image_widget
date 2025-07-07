@@ -80,41 +80,40 @@ class AppImagePicker extends StatelessWidget {
   }
 
   void _handleTap(BuildContext context) {
-    final cubit = context.read<ImagePickerCubit>();
-
     if (cameraEnabled && galleryEnabled) {
-      _showSourceSelector(context, cubit);
+      _showSourceSelector(context);
     } else {
-      cubit.onPickImage(
-        context: context,
-        source: ImageSource.gallery,
-        crop: crop,
-        compress: compress,
-        quality: imageQuality,
-        maxHeight: maxHeight,
-        maxWidth: maxWidth,
-      );
+      pickImage(context: context, source: ImageSource.gallery);
     }
   }
 
-  void _showSourceSelector(BuildContext context, ImagePickerCubit cubit) {
+  void _showSourceSelector(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder:
           (_) => ImageSourceSelector(
             onTap: (ImageSource source) {
               Navigator.pop(context);
-              cubit.onPickImage(
-                context: context,
-                source: source,
-                crop: crop,
-                compress: compress,
-                quality: imageQuality,
-                maxHeight: maxHeight,
-                maxWidth: maxWidth,
-              );
+              pickImage(context: context, source: source);
             },
           ),
+    );
+  }
+
+  void pickImage({
+    required BuildContext context,
+    ImageSource source = ImageSource.gallery,
+  }) {
+    final cubit = context.read<ImagePickerCubit>();
+    cubit.onPickImage(
+      context: context,
+      mounted: () => context.mounted,
+      source: source,
+      crop: crop,
+      compress: compress,
+      quality: imageQuality,
+      maxHeight: maxHeight,
+      maxWidth: maxWidth,
     );
   }
 }

@@ -1,12 +1,8 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'app_image_viewer.dart';
 
-// app_rectangle_avatar.dart
 class AppRectangleAvatar extends StatelessWidget {
   const AppRectangleAvatar({
     super.key,

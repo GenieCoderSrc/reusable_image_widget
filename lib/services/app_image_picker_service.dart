@@ -11,21 +11,14 @@ class AppImagePickerService {
     double? maxWidth,
   }) async {
     try {
-      final XFile? file = await _picker.pickImage(
+      final XFile? pickedFile = await _picker.pickImage(
         source: source,
         imageQuality: imageQuality,
         maxHeight: maxHeight,
         maxWidth: maxWidth,
       );
 
-      if (file == null) return file;
-      // if (file == null) return (null, null);
-
-      // if (kIsWeb) {
-      //   return (null, await file.readAsBytes());
-      // } else {
-      //   return (File(file.path), null);
-      // }
+      return pickedFile;
     } catch (e) {
       debugPrint('AppImagePickerService | error: $e');
       return null;

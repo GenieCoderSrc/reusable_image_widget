@@ -2,25 +2,19 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:reusable_image_widget/services/app_image_picker_service.dart';
-import 'package:reusable_image_widget/services/i_services/i_image_compressor_service.dart';
-import 'package:reusable_image_widget/services/i_services/i_image_cropper_service.dart';
+import 'package:reusable_image_widget/application/managers/image_picker_manager.dart';
 
 part 'image_picker_state.dart';
 
 class ImagePickerCubit extends Cubit<ImagePickerState> {
-  final AppImagePickerService pickerService;
-  final IImageCropperService cropperService;
-  final IImageCompressorService compressorService;
+  final ImagePickerManager imagePickerManager;
 
-  ImagePickerCubit({
-    required this.pickerService,
-    required this.cropperService,
-    required this.compressorService,
-  }) : super(ImagePickerInitial());
+  ImagePickerCubit({required this.imagePickerManager})
+    : super(ImagePickerInitial());
 
   Future<void> onPickImage({
     required BuildContext context,
+    required bool Function() mounted,
     required ImageSource source,
     bool crop = false,
     bool compress = false,
@@ -31,29 +25,21 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
     emit(ImagePickerLoading());
 
     try {
-      XFile? pickedFile = await pickerService.pickImage(
+      final pickedFile = await imagePickerManager.pickImage(
+        context: context,
+        mounted: mounted,
         source: source,
+        crop: crop,
+        compress: compress,
+        quality: quality,
         maxHeight: maxHeight,
         maxWidth: maxWidth,
-        imageQuality: quality,
       );
 
       if (pickedFile != null) {
-        if (crop) {
-          pickedFile = await cropperService.cropImage(
-            pickedFile: pickedFile,
-            context: context,
-          );
-        }
-
-        if (compress) {
-          pickedFile = await compressorService.compressImage(
-            pickedFile,
-            quality: quality,
-          );
-        }
-
         emit(ImagePickerSuccess(pickedFile: pickedFile));
+      } else {
+        emit(const ImagePickerFailure('No image selected'));
       }
     } catch (e) {
       emit(ImagePickerFailure('Failed to pick image: $e'));

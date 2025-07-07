@@ -30,7 +30,7 @@ class PhotoViewImage extends StatelessWidget {
       imageProvider: imageProvider ?? const AssetImage(noImageAvailable),
       backgroundDecoration: const BoxDecoration(color: Colors.black),
       errorBuilder:
-          (_, __, ___) => const Center(
+          (_, _, _) => const Center(
             child: Icon(Icons.broken_image, color: Colors.white),
           ),
       enableRotation: true,
