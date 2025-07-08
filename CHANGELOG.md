@@ -17,7 +17,6 @@ All notable changes to this project will be documented here.
 
 ## 0.0.7 – Jul 9, 2025
 
-
 ### ✨ Added
 
 * `PhotoViewImageBuilder` widget:
