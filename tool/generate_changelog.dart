@@ -22,15 +22,15 @@ void main() {
     'All notable changes to this project will be documented here.\n',
   );
 
-  buffer.writeln('## 🕘 Versions\n');
+  buffer.writeln('### 🕘 Versions\n');
   for (final entry in entries) {
     final version = entry.uri.pathSegments.last.replaceAll('.md', '');
     buffer.writeln(
-      ' * Version: - [$version](https://github.com/${Platform.environment['GITHUB_REPOSITORY']}/blob/main/changelog/$version.md)',
+      ' - [$version](https://github.com/${Platform.environment['GITHUB_REPOSITORY']}/blob/main/changelog/$version.md)',
     );
   }
 
-  buffer.writeln('\n## 🔥 Latest Summary\n');
+  buffer.writeln('\n### 🔥 Latest Summary\n');
   buffer.writeln(entries.first.readAsStringSync());
 
   File('CHANGELOG.md').writeAsStringSync(buffer.toString());
