@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/core/typedefs.dart';
 
-import 'image_picker/app_image_picker.dart';
-import 'profile/avatar_image_viewer.dart';
+import 'app_image_picker.dart';
+import '../profile/avatar_image_viewer.dart';
 
 class AvatarImagePicker extends StatelessWidget {
   const AvatarImagePicker({
@@ -67,18 +66,15 @@ class AvatarImagePicker extends StatelessWidget {
       cameraEnabled: cameraEnabled,
       galleryEnabled: galleryEnabled,
       onChanged: onChanged,
-      builder: (XFile? pickedFile) {
-        return AvatarImageViewer(
-          pickedFile: pickedFile,
-          imageSource: imageSource,
-          radius: radius,
-          heroTag: heroTag,
-          showEditIcon: showEditIcon,
-          isCircleAvatar: isCircleAvatar,
-          onTapEdit: onTapEdit,
-          editIcon: editIcon,
-        );
-      },
+      builder: AvatarImageViewer(
+        imageSource: imageSource,
+        radius: radius,
+        heroTag: heroTag,
+        showEditIcon: showEditIcon,
+        isCircleAvatar: isCircleAvatar,
+        onTapEdit: onTapEdit,
+        editIcon: editIcon,
+      ),
     );
   }
 }

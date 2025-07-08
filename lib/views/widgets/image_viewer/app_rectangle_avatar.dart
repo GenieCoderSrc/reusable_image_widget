@@ -7,7 +7,7 @@ class AppRectangleAvatar extends StatelessWidget {
   const AppRectangleAvatar({
     super.key,
     this.imageSource,
-    this.pickedFile,
+    // this.pickedFile,
     this.height,
     this.width,
     this.radius = 12.0,
@@ -17,7 +17,7 @@ class AppRectangleAvatar extends StatelessWidget {
   });
 
   final String? imageSource;
-  final XFile? pickedFile;
+  // final XFile? pickedFile;
   final double? height;
   final double? width;
   final double radius;
@@ -29,7 +29,7 @@ class AppRectangleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppImageViewer(
       imageSource: imageSource,
-      pickedFile: pickedFile,
+      // pickedFile: pickedFile,
       width: width,
       height: height,
       borderRadius: radius,

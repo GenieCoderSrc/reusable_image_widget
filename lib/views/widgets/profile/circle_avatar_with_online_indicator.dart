@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:online_indicator/online_indicators.dart';
 
-import '../app_circle_avatar.dart';
+import '../image_viewer/app_circle_avatar.dart';
 import '../../../constants/image_style_constant.dart';
 
 class CircleAvatarWithOnlineIndicator extends StatelessWidget {

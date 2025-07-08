@@ -1,6 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/reusable_image_widget.dart';
 
 void main() {
@@ -26,8 +27,6 @@ class MyApp extends StatelessWidget {
 
 // example/avatar_image_picker_example.dart
 
-// example/avatar_image_picker_demo.dart
-
 class AvatarImagePickerDemo extends StatelessWidget {
   const AvatarImagePickerDemo({super.key});
 
@@ -47,7 +46,7 @@ class AvatarImagePickerDemo extends StatelessWidget {
             compress: true,
             cameraEnabled: true,
             galleryEnabled: true,
-            onChanged: (XFile? pickedFile) {
+            onChanged: (File? pickedFile) {
               // You can handle the file (e.g., upload, save, preview)
               debugPrint('Picked image: ${pickedFile?.path}');
             },

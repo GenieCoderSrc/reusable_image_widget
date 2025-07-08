@@ -25,13 +25,6 @@ class FullScreenImageViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewer = PhotoViewImage(
-      imageSource: imageSource,
-      pickedFile: pickedFile,
-      scale: scale,
-      fit: fit,
-    );
-
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: FullScreenViewerAppBar(
@@ -41,7 +34,16 @@ class FullScreenImageViewer extends StatelessWidget {
       ),
       body: GestureDetector(
         onVerticalDragEnd: (_) => Navigator.pop(context),
-        child: Center(child: HeroWrapper(tag: heroTag, child: viewer)),
+        child: Center(
+          child: HeroWrapper(
+            tag: heroTag,
+            child: PhotoViewImage(
+              imageSource: imageSource,
+              pickedFile: pickedFile,
+              scale: scale,
+            ),
+          ),
+        ),
       ),
     );
   }

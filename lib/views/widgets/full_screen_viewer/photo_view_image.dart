@@ -10,13 +10,16 @@ class PhotoViewImage extends StatelessWidget {
     this.imageSource,
     this.pickedFile,
     this.scale,
-    this.fit = BoxFit.contain,
+    this.errorBuilder,
+    // this.fit = BoxFit.contain,
   });
 
   final String? imageSource;
   final XFile? pickedFile;
   final double? scale;
-  final BoxFit fit;
+  final Widget? errorBuilder;
+
+  // final BoxFit fit;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +33,11 @@ class PhotoViewImage extends StatelessWidget {
       imageProvider: imageProvider ?? const AssetImage(noImageAvailable),
       backgroundDecoration: const BoxDecoration(color: Colors.black),
       errorBuilder:
-          (_, _, _) => const Center(
-            child: Icon(Icons.broken_image, color: Colors.white),
-          ),
+          (_, _, _) =>
+              errorBuilder ??
+              const Center(
+                child: Icon(Icons.broken_image, color: Colors.white),
+              ),
       enableRotation: true,
       minScale: PhotoViewComputedScale.contained,
       maxScale: PhotoViewComputedScale.covered * 3,

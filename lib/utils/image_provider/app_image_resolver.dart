@@ -12,7 +12,7 @@ class AppImageResolver {
     XFile? pickedFile,
     String? imageSource,
     double? scale,
-    BoxFit fit = BoxFit.cover,
+    BoxFit? fit,
     double? width,
     double? height,
     Widget? placeholder,
@@ -23,7 +23,7 @@ class AppImageResolver {
       if (kIsWeb && pickedFile != null) {
         return Image.network(
           pickedFile.path,
-          fit: fit,
+          fit: fit ?? BoxFit.cover,
           scale: scale ?? 1.0,
           width: width,
           height: height,
