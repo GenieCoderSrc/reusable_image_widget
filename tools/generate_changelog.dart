@@ -26,7 +26,7 @@ void main() {
   for (final entry in entries) {
     final version = entry.uri.pathSegments.last.replaceAll('.md', '');
     buffer.writeln(
-      '- [$version](https://github.com/${Platform.environment['GITHUB_REPOSITORY']}/blob/main/changelog/$version.md)',
+      ' * Version: - [$version](https://github.com/${Platform.environment['GITHUB_REPOSITORY']}/blob/main/changelog/$version.md)',
     );
   }
 

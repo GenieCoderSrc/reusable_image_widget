@@ -4,13 +4,13 @@ All notable changes to this project will be documented here.
 
 ## 🕘 Versions
 
-- [0.0.7](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.7.md)
-- [0.0.6](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.6.md)
-- [0.0.5](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.5.md)
-- [0.0.4](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.4.md)
-- [0.0.3](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.3.md)
-- [0.0.2](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.2.md)
-- [0.0.1](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.1.md)
+ * Version: - [0.0.7](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.7.md)
+ * Version: - [0.0.6](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.6.md)
+ * Version: - [0.0.5](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.5.md)
+ * Version: - [0.0.4](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.4.md)
+ * Version: - [0.0.3](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.3.md)
+ * Version: - [0.0.2](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.2.md)
+ * Version: - [0.0.1](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.1.md)
 
 ## 🔥 Latest Summary
 
