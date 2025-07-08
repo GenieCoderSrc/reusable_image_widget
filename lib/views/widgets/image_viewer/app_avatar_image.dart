@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'app_image_viewer.dart';
 
@@ -7,7 +6,6 @@ class AppAvatarImage extends StatelessWidget {
   const AppAvatarImage({
     super.key,
     this.imageSource,
-    // this.pickedFile,
     this.radius = 40,
     this.borderRadius,
     this.isCircular = true,
@@ -16,6 +14,7 @@ class AppAvatarImage extends StatelessWidget {
   });
 
   final String? imageSource;
+
   // final XFile? pickedFile;
   final double radius;
   final double? borderRadius;

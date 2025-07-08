@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'app_image_viewer.dart';
 
@@ -8,14 +7,12 @@ class AppCircleAvatar extends StatelessWidget {
   const AppCircleAvatar({
     super.key,
     this.imageSource,
-    // this.pickedFile,
     this.radius = 40,
     this.placeholderIcon = Icons.person,
     this.backgroundColor,
   });
 
   final String? imageSource;
-  // final XFile? pickedFile;
   final double radius;
   final IconData placeholderIcon;
   final Color? backgroundColor;
