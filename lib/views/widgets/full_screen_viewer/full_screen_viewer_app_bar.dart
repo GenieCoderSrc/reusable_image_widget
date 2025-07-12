@@ -1,5 +1,5 @@
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/utils/image_downloader/download_image_util.dart';
 
 class FullScreenViewerAppBar extends StatelessWidget

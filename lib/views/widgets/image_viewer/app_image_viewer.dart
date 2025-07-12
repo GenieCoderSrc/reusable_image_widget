@@ -1,3 +1,4 @@
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 
 import 'image_builder.dart';
@@ -6,6 +7,7 @@ class AppImageViewer extends StatelessWidget {
   const AppImageViewer({
     super.key,
     this.imageSource,
+    this.pickedFile,
     this.scale,
     this.fit,
     this.placeholder,
@@ -19,6 +21,7 @@ class AppImageViewer extends StatelessWidget {
   });
 
   final String? imageSource;
+  final XFile? pickedFile;
 
   final double? scale;
   final BoxFit? fit;
@@ -49,6 +52,7 @@ class AppImageViewer extends StatelessWidget {
       clipBehavior: clipBehavior ?? Clip.antiAlias,
       child: ImageBuilder(
         imageSource: imageSource,
+        pickedFile: pickedFile,
         scale: scale,
         fit: fit,
         width: width,

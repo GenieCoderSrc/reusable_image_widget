@@ -1,5 +1,5 @@
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/views/widgets/full_screen_viewer/hero_wrapper.dart';
 
 import 'full_screen_viewer_app_bar.dart';

@@ -1,19 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/reusable_image_widget.dart';
 
 void main() {
-  registerReusableImageWidgetDependencies();
-  initReusableImageWidgetBlocProvider();
-
-  runApp(
-    MultiBlocProvider(
-      providers: reusableImageWidgetBlocProviders,
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,36 +11,80 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: AvatarImagePickerDemo());
+    return MaterialApp(
+      title: 'Reusable Image Widget Demo',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const ImageViewerExample(),
+    );
   }
 }
 
-// example/avatar_image_picker_example.dart
+class ImageViewerExample extends StatefulWidget {
+  const ImageViewerExample({super.key});
 
-class AvatarImagePickerDemo extends StatelessWidget {
-  const AvatarImagePickerDemo({super.key});
+  @override
+  State<ImageViewerExample> createState() => _ImageViewerExampleState();
+}
+
+class _ImageViewerExampleState extends State<ImageViewerExample> {
+  XFile? pickedFile;
+
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> pickImage() async {
+    final file = await _picker.pickImage(source: ImageSource.gallery);
+    if (file != null) {
+      setState(() => pickedFile = file);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    const sampleNetworkImage =
+        'https://i.pravatar.cc/300'; // Replace with your image URL
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Avatar Image Picker Demo')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: AvatarImagePicker(
-            imageSource: 'assets/images/default_avatar.png',
-            imageQuality: 85,
-            maxHeight: 500,
-            maxWidth: 500,
-            crop: true,
-            compress: true,
-            cameraEnabled: true,
-            galleryEnabled: true,
-            onChanged: (File? pickedFile) {
-              // You can handle the file (e.g., upload, save, preview)
-              debugPrint('Picked image: ${pickedFile?.path}');
-            },
-          ),
+      appBar: AppBar(title: const Text('Reusable Image Viewer')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            const Text("1️⃣ Asset Image Viewer"),
+            const SizedBox(height: 8),
+            const AppImageViewer(
+              imageSource: 'assets/avatar_placeholder.png',
+              width: 120,
+              height: 120,
+              isCircular: true,
+            ),
+            const Divider(height: 40),
+
+            const Text("2️⃣ Network Image Viewer"),
+            const SizedBox(height: 8),
+            const AppImageViewer(
+              imageSource: sampleNetworkImage,
+              width: 120,
+              height: 120,
+              isCircular: true,
+            ),
+            const Divider(height: 40),
+
+            const Text("3️⃣ Picked File Image Viewer"),
+            const SizedBox(height: 8),
+            AppImageViewer(
+              pickedFile: pickedFile,
+              imageSource: pickedFile?.path,
+              width: 120,
+              height: 120,
+              isCircular: true,
+            ),
+            const SizedBox(height: 12),
+            ElevatedButton.icon(
+              onPressed: pickImage,
+              icon: const Icon(Icons.photo),
+              label: const Text("Pick Image"),
+            ),
+          ],
         ),
       ),
     );

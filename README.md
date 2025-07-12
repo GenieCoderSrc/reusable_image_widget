@@ -1,204 +1,160 @@
 # reusable\_image\_widget
 
-Reusable Flutter widgets and utilities for picking, cropping, compressing, and displaying images with easy configuration
-and integrated state management.
+A modular and flexible Flutter image/avatar viewing utility with support for:
+
+* Circular and rectangular avatars
+* Asset, network, and file-based image resolution
+* Full-screen image viewing with pinch-to-zoom (PhotoView)
+* Image downloading
+* Placeholder/error fallback widgets
+* Web/mobile/desktop support
 
 ---
 
-## ✅ Features
+## 📦 Features
 
-* Pick images from gallery or camera with a customizable picker
-* Crop images with custom aspect ratio presets
-* Compress images to reduce file size with quality control
-* Display images from:
-
-    * Network URL
-    * Assets
-    * Local files via `XFile`
-* Fullscreen image viewer with:
-
-    * Zoom, pan, double-tap zoom, swipe-to-dismiss
-    * Download image feature
-* Avatar widgets (circular/rectangular) with editable overlay icons
-* Custom placeholders and error handling
-* Built-in state management using `ImagePickerCubit`
-* Integration-ready for dependency injection (GetIt)
+* Unified API for displaying images from `XFile`, assets, or URLs
+* Circular, rectangular, or custom avatar support
+* Hero animation for full-screen preview
+* Image saving functionality (non-Web platforms)
+* Highly customizable: radius, border, fit, fallback, colors
 
 ---
 
-## 🚀 Installation
+## 🧱 Core Components
 
-Add to your `pubspec.yaml`:
+### `AvatarStyleConstants`
 
-```yaml
-reusable_image_widget: <latest_version>
-```
-
-Then run:
-
-```bash
-flutter pub get
-```
-
----
-
-## 📦 Usage
-
-### ✨ Pick and Crop Image
+Defines common spacing, padding, and radius used throughout avatar components.
 
 ```dart
-final XFile? pickedImage = await pickerService.pickImage(
-  source: ImageSource.gallery,
-  maxHeight: 500,
-  maxWidth: 500,
-  imageQuality: 85,
-);
-
-final XFile? croppedImage = await cropperService.cropImage(
-  pickedFile: pickedImage!,
-  context: context,
-);
+class AvatarStyleConstants {
+  static const double defaultRadius = 40;
+  static const double editIconOffset = -6.0;
+  static const EdgeInsets avatarPadding = EdgeInsets.all(8.0);
+  static const EdgeInsets editIconCardMargin = EdgeInsets.all(8.0);
+  static const EdgeInsets editIconPadding = EdgeInsets.all(4.0);
+}
 ```
 
----
+### `ImageSourceExtension`
 
-### ✨ Compress Image
+Adds helper to check whether a string represents an asset path.
 
 ```dart
-final XFile compressedImage = await compressorService.compressImage(
-  pickedImage,
-  quality: 85,
-);
+extension ImageSourceExtension on String {
+  bool get isAssetPath => startsWith('assets/');
+}
 ```
+
+### `appImageProvider()`
+
+Returns an appropriate `ImageProvider` based on asset, file, or network.
+
+### `AppImageViewer`
+
+Base widget that renders an image inside a decorated container. Supports:
+
+* `XFile`
+* `imageSource` (String path or URL)
+* `isCircular`, `borderRadius`, `placeholder`, `errorWidget`
+
+### `ImageBuilder`
+
+Internal utility widget that resolves image via `AppImageResolver`.
+
+### `AppCircleAvatar` / `AppRectangleAvatar`
+
+Pre-configured image viewer for circular or rounded rectangle style.
+
+### `AvatarImageViewer`
+
+Composite widget for user avatars with optional edit icon and full-screen view on double tap.
+
+### `FullScreenImageViewer`
+
+Displays image in full-screen mode using `PhotoView` and `Hero`.
 
 ---
 
-### 🎯 Use AvatarImagePicker (Recommended)
+## 📥 Downloading Images
+
+Use `downloadImage({pickedFile, imageSource})` to save the image to device gallery (Android/iOS only).
 
 ```dart
-AvatarImagePicker(
-  imageSource: 'assets/images/default_avatar.png',
-  imageQuality: 85,
-  maxHeight: 500,
-  maxWidth: 500,
-  crop: true,
-  compress: true,
-  onChanged: (file) {
-    // Handle updated image file
-  },
+final result = await downloadImage(
+  pickedFile: file,
+  imageSource: url,
 );
 ```
 
 ---
 
-### 🖼️ Display Avatar Image
+## 🖼 Usage Examples
+
+### Avatar Image with Edit Icon
 
 ```dart
 AvatarImageViewer(
-  xFile: pickedFile,
-  imageSource: 'https://example.com/profile.jpg',
-  radius: 40,
+  imageSource: 'assets/images/profile_pic.jpeg',
+  pickedFile: pickedFile,
+  heroTag: 'profile-avatar',
   showEditIcon: true,
-  onTapEdit: () {
-    // Open picker or handle edit action
-  },
-);
+  onTapEdit: () => _pickNewImage(),
+)
+```
+
+### Full-Screen Viewer
+
+```dart
+FullScreenImageViewer(
+  imageSource: 'https://example.com/photo.jpg',
+  heroTag: 'profile-avatar',
+)
+```
+
+### Rectangle Avatar
+
+```dart
+AppRectangleAvatar(
+  imageSource: kLogoIconPath,
+  radius: 12,
+  height: 100,
+  width: 100,
+)
 ```
 
 ---
 
-### 👤 Use AppCircleAvatar
+## 📁 Constants Used
 
 ```dart
-AppCircleAvatar(
-  imageSource: 'https://example.com/profile.jpg',
-  radius: 40,
-);
+const String kProfileIconPath = 'assets/images/profile_pic.jpeg';
+const String kProfileIconUrl = 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?...';
+const String kLogoIconPath = 'assets/icons/logo.jpg';
+const String noImageAvailable = 'https://.../no_image_available.jpeg';
 ```
 
 ---
 
-### 🔍 Fullscreen Image Viewer
+## 📸 Dependencies
 
-```dart
-Navigator.of(context).push(
-  MaterialPageRoute(
-    builder: (_) => FullScreenImageViewer(
-      pickedFile: pickedFile,
-      imageSource: imageUrl,
-      heroTag: 'profile-avatar',
-    ),
-  ),
-);
-```
-
----
-
-### 🧠 Using AppImagePicker with Bloc
-
-Ensure `ImagePickerCubit` is provided via `BlocProvider` and dependencies are registered via `GetIt`.
-
-```dart
-AppImagePicker(
-  crop: true,
-  compress: true,
-  onChanged: (file) {
-    // Handle selected image
-  },
-);
-```
-
----
-
-## 🛠️ Dependency Injection & Bloc Setup
-
-Register services and cubit using `GetIt`:
-
-```dart
-void main() {
-  registerReusableImageWidgetDependencies();
-  initReusableImageWidgetBlocProvider();
-
-  runApp(
-    MultiBlocProvider(
-      providers: reusableImageWidgetBlocProviders,
-      child: const MyApp(),
-    ),
-  );
-}
-
-```
-
-Wrap your app with the cubit provider:
-
-```dart
-MultiBlocProvider(
-  providers: [
-    BlocProvider<ImagePickerCubit>(create: (_) => sl<ImagePickerCubit>()),
-    // other providers...
-  ],
-  child: MyApp(),
-);
-```
-
----
-
-## 📦 Dependencies
-
-* `flutter`
-* `image_picker`
-* `image_cropper`
-* `flutter_image_compress`
-* `cached_network_image`
 * `photo_view`
-* `flutter_bloc`
-* `get_it`
+* `cached_network_image`
+* `image_gallery_saver`
+* `permission_handler`
+* `http`
+* `cross_file`
 
 ---
 
-## 📁 Example
+## 🧪 Platform Support
 
-See the [`example/`](example/) directory for a full implementation.
+| Feature          | Web | Android | iOS | Desktop         |
+| ---------------- | --- | ------- | --- | --------------- |
+| Image preview    | ✅   | ✅       | ✅   | ✅               |
+| Full-screen view | ✅   | ✅       | ✅   | ✅               |
+| Image download   | ❌   | ✅       | ✅   | ⚠️ (Not tested) |
 
 ---
 

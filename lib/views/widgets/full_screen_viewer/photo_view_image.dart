@@ -1,5 +1,5 @@
+import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:reusable_image_widget/constants/default_image_path.dart';
 import 'package:reusable_image_widget/utils/image_provider/app_image_provider.dart';
