@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:reusable_image_widget/reusable_image_widget.dart';
 
 /// Builds image widget from either picked file or image source
-class ImageBuilder extends StatelessWidget {
-  const ImageBuilder({
+class AppImageLoader extends StatelessWidget {
+  const AppImageLoader({
     super.key,
     this.imageSource,
     this.pickedFile,

@@ -21,19 +21,17 @@ ImageProvider<Object>? appImageProvider({
     if (kIsWeb && pickedFile != null) {
       return NetworkImage(pickedFile.path);
     }
-
     // Mobile/Desktop: Use FileImage
-    if (!kIsWeb && pickedFile != null) {
+    else if (!kIsWeb && pickedFile != null) {
       return FileImage(File(pickedFile.path), scale: scale ?? 1.0);
     }
-
     // Network Image
-    if (imageSource != null && Uri.tryParse(imageSource)?.isAbsolute == true) {
+    else if (imageSource != null &&
+        Uri.tryParse(imageSource)?.isAbsolute == true) {
       return CachedNetworkImageProvider(imageSource, scale: scale ?? 1.0);
     }
-
     // Asset Image
-    if (imageSource != null && imageSource.isAssetPath) {
+    else if (imageSource != null && imageSource.isAssetPath) {
       return AssetImage(imageSource);
     }
 

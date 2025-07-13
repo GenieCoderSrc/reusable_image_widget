@@ -32,9 +32,7 @@ class AppImageResolver {
           height: height,
           errorWidget: errorWidget,
         );
-      }
-
-      if (_isNetworkUrl(imageSource)) {
+      } else if (_isNetworkUrl(imageSource)) {
         return _buildFromNetwork(
           url: imageSource!,
           fit: fit,
@@ -43,9 +41,7 @@ class AppImageResolver {
           placeholder: placeholder,
           errorWidget: errorWidget,
         );
-      }
-
-      if (_isAssetPath(imageSource)) {
+      } else if (_isAssetPath(imageSource)) {
         return _buildFromAsset(
           path: imageSource!,
           fit: fit,

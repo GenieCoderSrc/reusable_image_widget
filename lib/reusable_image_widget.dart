@@ -13,7 +13,7 @@ export 'views/widgets/image_viewer/app_avatar_image.dart';
 export 'views/widgets/image_viewer/app_circle_avatar.dart';
 export 'views/widgets/image_viewer/app_image_viewer.dart';
 export 'views/widgets/image_viewer/app_rectangle_avatar.dart';
-export 'views/widgets/image_viewer/image_builder.dart';
+export 'views/widgets/image_viewer/app_image_loader.dart';
 export 'views/widgets/profile/avatar_image_viewer.dart';
 export 'views/widgets/profile/circle_avatar_with_online_indicator.dart';
 export 'views/widgets/profile/edit_avatar_icon.dart';

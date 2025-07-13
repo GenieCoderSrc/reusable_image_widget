@@ -1,7 +1,7 @@
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
 
-import 'image_builder.dart';
+import 'app_image_loader.dart';
 
 class AppImageViewer extends StatelessWidget {
   const AppImageViewer({
@@ -50,7 +50,7 @@ class AppImageViewer extends StatelessWidget {
                     : null),
       ),
       clipBehavior: clipBehavior ?? Clip.antiAlias,
-      child: ImageBuilder(
+      child: AppImageLoader(
         imageSource: imageSource,
         pickedFile: pickedFile,
         scale: scale,
