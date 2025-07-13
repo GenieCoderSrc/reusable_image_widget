@@ -4,6 +4,7 @@ All notable changes to this project will be documented here.
 
 ### 🕘 Versions
 
+ - [0.1.0](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.0.md)
  - [0.0.9](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.9.md)
  - [0.0.8](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.8.md)
  - [0.0.7](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.0.7.md)
@@ -16,25 +17,11 @@ All notable changes to this project will be documented here.
 
 ### 🔥 Latest Summary
 
-### 0.0.9 – 2025-07-12
+### 0.1.0 – Jul 13, 2025
 
-### ♻️ Refactored
-
-- **Removed** all image_picker-related logic from the package.
-- **Replaced** any direct dependency on `image_picker` with `XFile? pickedFile` from `cross_file`, ensuring full cross-platform compatibility.
 
 ### ✨ Added
 
-- `pickedFile` property to `AppImageViewer` and `ImageBuilder` to support dynamic rendering of images picked outside this package.
-- Updated `AppImageResolver` to cleanly support rendering images from:
-  - `XFile` on Web and Mobile
-  - Network (via `CachedNetworkImage`)
-  - Asset images
-- More flexible handling of UI display scenarios.
-
-### 📦 Dependencies
-
-- **Added:** `cross_file` for platform-agnostic `XFile` support.
-- **Retained:** `cached_network_image` for optimized network image loading.
+- `pickedFile` property to `FullScreenImageViewer`, `AppRectangleAvatar`, `AppCircleAvatar`,  and `AppAvatarImage` to support dynamic rendering of images picked outside this package.
 
 ---
