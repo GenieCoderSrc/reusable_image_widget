@@ -1,10 +1,9 @@
-export 'package:reusable_image_widget/extensions/image_source_type_checker.dart';
-export 'package:reusable_image_widget/utils/image_provider/app_image_provider.dart';
-export 'package:reusable_image_widget/utils/image_provider/app_image_resolver.dart';
-
 export 'constants/avatar_style_constants.dart';
 export 'constants/default_image_path.dart';
 export 'constants/image_style_constant.dart';
+export 'extensions/image_source_type_checker.dart';
+export 'utils/image_provider/app_image_provider.dart';
+export 'utils/image_provider/app_image_resolver.dart';
 export 'views/widgets/build_avatar_image.dart';
 export 'views/widgets/cached_image.dart';
 export 'views/widgets/full_screen_viewer/full_screen_image_viewer.dart';
