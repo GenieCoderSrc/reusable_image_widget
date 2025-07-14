@@ -22,7 +22,7 @@ class AppAvatarImage extends StatelessWidget {
   final double? borderRadius;
   final bool isCircular;
   final Color? backgroundColor;
-  final IconData placeholderIcon;
+  final IconData? placeholderIcon;
 
   @override
   Widget build(BuildContext context) {

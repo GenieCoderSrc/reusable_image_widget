@@ -17,7 +17,7 @@ class AppCircleAvatar extends StatelessWidget {
   final String? imageSource;
   final XFile? pickedFile;
   final double radius;
-  final IconData placeholderIcon;
+  final IconData? placeholderIcon;
   final Color? backgroundColor;
 
   @override

@@ -1,4 +1,4 @@
-# 📷 reusable_image_widget
+# 📷 reusable\_image\_widget
 
 A powerful, flexible, and platform-aware Flutter image handling package that supports displaying avatars, full-screen image viewing, file/network/asset loading, and gallery saving with minimal setup.
 
@@ -10,6 +10,7 @@ A powerful, flexible, and platform-aware Flutter image handling package that sup
 * ✔ Auto-detect platform and image source
 * ✔ Full-screen image viewer with zoom, rotation, and hero animation
 * ✔ Circular or rectangular avatar widgets
+* ✔ Avatar with online indicator and edit support
 * ✔ Customizable placeholder and error widgets
 * ✔ Platform-aware image downloading (web, mobile, desktop)
 * ✔ Lightweight and easily composable
@@ -46,7 +47,7 @@ Uses:
 
 ## 🚀 Usage
 
-### 1. Basic Usage
+### 1. Basic Viewer
 
 ```dart
 AppImageViewer(
@@ -62,21 +63,37 @@ AppImageViewer(
 )
 ```
 
-### 3. Avatar Image
+### 3. Edit Profile Image Viewer
 
 ```dart
-AppAvatarImage(
-  imageSource: 'https://example.com/image.jpg',
-  radius: 48,
+EditProfileImageViewer(
+  pickedFile: pickedFile,
+  imageSource: pickedFile?.path,
+  radius: 60,
+  showEditIcon: true,
+  onTapEdit: () => pickImage(),
 )
 ```
 
-### 4. Full Screen Viewer
+### 4. Avatar With Online Indicator
 
 ```dart
-FullScreenImageViewer(
+AvatarWithOnlineIndicator(
   imageSource: 'https://example.com/image.jpg',
-  heroTag: 'profile_pic',
+  isOnline: true,
+  border: true,
+  shadow: true,
+  imgRadius: 50,
+)
+```
+
+### 5. AppAvatar (Circle or Rectangle)
+
+```dart
+AppAvatar(
+  isCircle: true,
+  imageSource: 'https://example.com/image.jpg',
+  radius: 48,
 )
 ```
 
@@ -84,10 +101,11 @@ FullScreenImageViewer(
 
 ## 🎨 Avatar Widgets
 
-* `AppAvatarImage` — circular or rectangle with fallback
+* `AppAvatar` — root avatar builder (circle or rectangle)
 * `AppCircleAvatar`
 * `AppRectangleAvatar`
-* `AvatarImageViewer` — avatar with edit icon & full-screen support
+* `EditProfileImageViewer` — avatar with edit icon & full-screen support
+* `AvatarWithOnlineIndicator` — avatar with status badge
 
 ---
 
@@ -144,7 +162,7 @@ HeroWrapper(
 
 ---
 
-## 🚧 Dependencies
+## ⚧ Dependencies
 
 ```yaml
 dependency_overrides:
@@ -159,18 +177,20 @@ dependency_overrides:
 ## 📖 Example
 
 ```dart
-ImageWithTitle(
+AvatarTitleGridCard(
   title: 'Your Logo',
-  logoPath: 'assets/icons/logo.jpg',
+  imageSource: 'assets/icons/logo.jpg',
   isCircleAvatar: true,
 )
 ```
+
+> 🔊 Note: Previously named `ImageWithTitle`, now moved to `reusable_list_item` package.
 
 ---
 
 ## 📄 License
 
-MIT © 2025 reusable_image_widget authors
+MIT © 2025 reusable\_image\_widget authors
 
 ---
 
@@ -189,7 +209,7 @@ Pull requests and issues are welcome!
 
 ## 👨‍💼 Author
 
-**reusable_image_widget**
+**reusable\_image\_widget**
 Developed with ❤️ by [Shohidul Islam](https://github.com/ShohidulProgrammer)
 Contributions, issues, and pull requests are welcome!
 

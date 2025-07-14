@@ -7,16 +7,17 @@ import 'package:reusable_image_widget/views/widgets/image_viewer/app_rectangle_a
 
 import '../../../constants/default_image_path.dart';
 import '../image_viewer/app_circle_avatar.dart';
-import 'edit_avatar_icon.dart';
+import 'edit_profile_icon.dart';
 
-class AvatarImageViewer extends StatelessWidget {
-  const AvatarImageViewer({
+class EditProfileImageViewer extends StatelessWidget {
+  const EditProfileImageViewer({
     super.key,
     this.pickedFile,
     this.imageSource = kProfileIconPath,
     this.radius = AvatarStyleConstants.defaultRadius,
     this.heroTag,
     this.showEditIcon = true,
+    this.openFullScreenViewer = false,
     this.isCircleAvatar,
     this.onTapEdit,
     this.editIcon,
@@ -27,6 +28,7 @@ class AvatarImageViewer extends StatelessWidget {
   final double radius;
   final String? heroTag;
   final bool showEditIcon;
+  final bool openFullScreenViewer;
   final bool? isCircleAvatar;
   final VoidCallback? onTapEdit;
   final Widget? editIcon;
@@ -34,7 +36,8 @@ class AvatarImageViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: () => _openFullScreenViewer(context),
+      onDoubleTap:
+          openFullScreenViewer ? () => _openFullScreenViewer(context) : null,
       child: Padding(
         padding: AvatarStyleConstants.avatarPadding,
         child: Stack(
@@ -47,7 +50,7 @@ class AvatarImageViewer extends StatelessWidget {
                 right: AvatarStyleConstants.editIconOffset,
                 child: GestureDetector(
                   onTap: onTapEdit,
-                  child: editIcon ?? const EditAvatarIcon(),
+                  child: editIcon ?? const EditProfileIcon(),
                 ),
               ),
           ],
@@ -78,3 +81,4 @@ class AvatarImageViewer extends StatelessWidget {
     );
   }
 }
+

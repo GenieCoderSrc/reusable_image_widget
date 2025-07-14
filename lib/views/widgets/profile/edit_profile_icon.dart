@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:reusable_image_widget/constants/avatar_style_constants.dart';
 
-class EditAvatarIcon extends StatelessWidget {
-  const EditAvatarIcon({
+class EditProfileIcon extends StatelessWidget {
+  const EditProfileIcon({
     super.key,
     this.icon = Icons.add_a_photo,
     this.iconSize = 16,
@@ -16,7 +16,7 @@ class EditAvatarIcon extends StatelessWidget {
   final double iconSize;
   final Color? iconColor;
   final Color? backgroundColor;
-  final double elevation;
+  final double? elevation;
   final EdgeInsets? padding;
 
   @override

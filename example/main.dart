@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/reusable_image_widget.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -40,36 +41,63 @@ class _ImageViewerExampleState extends State<ImageViewerExample> {
 
   @override
   Widget build(BuildContext context) {
-    const sampleNetworkImage =
-        'https://i.pravatar.cc/300'; // Replace with your image URL
+    const sampleNetworkImage = 'https://i.pravatar.cc/300';
 
     return Scaffold(
       appBar: AppBar(title: const Text('Reusable Image Viewer')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("1️⃣ Asset Image Viewer"),
+            const Text("1️⃣ Edit Profile Image Viewer"),
             const SizedBox(height: 8),
-            const AppImageViewer(
-              imageSource: 'assets/avatar_placeholder.png',
-              width: 120,
-              height: 120,
-              isCircular: true,
+            EditProfileImageViewer(
+              pickedFile: pickedFile,
+              imageSource: pickedFile?.path ?? sampleNetworkImage,
+              onTapEdit: pickImage,
+              radius: 60,
+              showEditIcon: true,
             ),
             const Divider(height: 40),
 
-            const Text("2️⃣ Network Image Viewer"),
+            const Text("2️⃣ Avatar With Online Indicator"),
             const SizedBox(height: 8),
-            const AppImageViewer(
+            AvatarWithOnlineIndicator(
               imageSource: sampleNetworkImage,
-              width: 120,
-              height: 120,
-              isCircular: true,
+              isOnline: true,
+              imgRadius: 50,
+              indicatorRadius: 14,
+              indicatorBorderRadius: 2,
+              border: true,
+              shadow: true,
+              onTap: () => ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Avatar tapped")),
+              ),
             ),
             const Divider(height: 40),
 
-            const Text("3️⃣ Picked File Image Viewer"),
+            const Text("3️⃣ AppAvatar Circle"),
+            const SizedBox(height: 8),
+            const AppAvatar(
+              isCircle: true,
+              radius: 50,
+              imageSource: sampleNetworkImage,
+              backgroundColor: Colors.grey,
+            ),
+            const Divider(height: 40),
+
+            const Text("4️⃣ AppAvatar Rectangle"),
+            const SizedBox(height: 8),
+            const AppAvatar(
+              isCircle: false,
+              radius: 50,
+              imageSource: sampleNetworkImage,
+              backgroundColor: Colors.grey,
+            ),
+            const Divider(height: 40),
+
+            const Text("5️⃣ Picked Image Preview"),
             const SizedBox(height: 8),
             AppImageViewer(
               pickedFile: pickedFile,

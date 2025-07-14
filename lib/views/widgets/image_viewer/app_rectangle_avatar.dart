@@ -21,7 +21,7 @@ class AppRectangleAvatar extends StatelessWidget {
   final double? height;
   final double? width;
   final double radius;
-  final IconData placeholderIcon;
+  final IconData? placeholderIcon;
   final Color? backgroundColor;
   final BoxFit fit;
 

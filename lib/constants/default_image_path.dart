@@ -1,4 +1,4 @@
-const String kProfileIconPath = 'assets/images/profile_pic.jpeg';
+const String kProfileIconPath = 'assets/images/profile_pic.jpg';
 const String kProfileIconUrl =
     'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1600';
 const String kLogoIconPath = 'assets/icons/logo.jpg';
