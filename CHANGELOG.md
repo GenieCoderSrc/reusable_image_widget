@@ -4,6 +4,7 @@ All notable changes to this project will be documented here.
 
 ### 🕘 Versions
 
+ - [0.1.3](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.3.md)
  - [0.1.2](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.2.md)
  - [0.1.1](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.1.md)
  - [0.1.0](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.0.md)
@@ -19,20 +20,11 @@ All notable changes to this project will be documented here.
 
 ### 🔥 Latest Summary
 
-## 0.1.2
+## 0.1.3
 
-### Jul 14, 2025
+### Jul 15, 2025
 
-### ✨ Added
-- Introduced `AppAvatar` widget:
-    - Dynamically renders `AppCircleAvatar` or `AppRectangleAvatar` based on the `isCircle` flag.
-
-### ♻️ Changed
-- `AvatarImageViewer` ➜ `EditProfileImageViewer`.
-- `EditAvatarIcon` ➜ `EditProfileIcon`.
-- `CircleAvatarWithOnlineIndicator` ➜ `AvatarWithOnlineIndicator`, now uses `AppAvatar` with `AppCircleAvatar`.
 
 ### 🔥 Removed
-- `ImageWithTitle` widget has been removed from this package.
-    - It is now renamed to `AvatarTitleGridCard` and migrated to the `reusable_list_item` package.
+- Removed `app_style` dependency.
 
