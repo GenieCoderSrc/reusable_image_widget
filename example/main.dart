@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:reusable_image_widget/reusable_image_widget.dart';
 
-
 void main() {
   runApp(const MyApp());
 }
@@ -71,9 +70,10 @@ class _ImageViewerExampleState extends State<ImageViewerExample> {
               indicatorBorderRadius: 2,
               border: true,
               shadow: true,
-              onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Avatar tapped")),
-              ),
+              onTap:
+                  () => ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Avatar tapped")),
+                  ),
             ),
             const Divider(height: 40),
 

@@ -65,4 +65,3 @@ Future<String> downloadImage({XFile? pickedFile, String? imageSource}) async {
     return 'Error saving image: $e';
   }
 }
-
