@@ -15,10 +15,8 @@ dependencies:
     sdk: flutter
 
 
-  online_indicator:
-    path: ../online_indicator
-  loading_builder:
-    path: ../loading_builder
+  online_indicator: ^0.0.2
+  loading_builder: ^0.0.3
 
 
 
