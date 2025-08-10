@@ -4,6 +4,7 @@ All notable changes to this project will be documented here.
 
 ### 🕘 Versions
 
+ - [0.1.4](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.4.md)
  - [0.1.3](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.3.md)
  - [0.1.2](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.2.md)
  - [0.1.1](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.1.md)
@@ -25,6 +26,6 @@ All notable changes to this project will be documented here.
 ### Jul 15, 2025
 
 
-### 🔥 Removed
-- Removed `app_style` dependency.
+### 🔥 Updated
+- Updated `http` dependency to `1.5.0`.
 
