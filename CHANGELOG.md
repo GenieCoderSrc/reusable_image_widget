@@ -21,11 +21,12 @@ All notable changes to this project will be documented here.
 
 ### 🔥 Latest Summary
 
-## 0.1.3
+## 0.1.4
 
-### Jul 15, 2025
+### Aug 16, 2025
 
 
 ### 🔥 Updated
 - Updated `http` dependency to `1.5.0`.
+- Removed `loading_builder` dependency.
 
