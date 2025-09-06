@@ -61,8 +61,16 @@ class EditProfileImageViewer extends StatelessWidget {
 
   Widget _buildAvatar() {
     return isCircleAvatar ?? true
-        ? AppCircleAvatar(radius: radius, imageSource: imageSource)
-        : AppRectangleAvatar(radius: radius, imageSource: imageSource);
+        ? AppCircleAvatar(
+          radius: radius,
+          imageSource: imageSource,
+          pickedFile: pickedFile,
+        )
+        : AppRectangleAvatar(
+          radius: radius,
+          imageSource: imageSource,
+          pickedFile: pickedFile,
+        );
   }
 
   void _openFullScreenViewer(BuildContext context) {
