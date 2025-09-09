@@ -24,7 +24,7 @@ class HeroWrapper extends StatelessWidget {
 // import 'package:reusable_image_widget/utils/image_provider/app_image_provider.dart';
 //
 // import '../../constants/default_image_path.dart';
-// import '../../utils/image_downloader/download_image_util.dart';
+// import '../../utils/image_downloader/image_downloader_impl.dart';
 //
 
 // class FullScreenImageViewer extends StatefulWidget {

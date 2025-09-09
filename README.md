@@ -166,10 +166,10 @@ HeroWrapper(
 
 ```yaml
 dependency_overrides:
-  cached_network_image: ^3.3.1
-  photo_view: ^0.14.0
-  image_gallery_saver: ^2.0.3
-  permission_handler: ^11.3.0
+  cached_network_image: <latest_version>
+  photo_view: <latest_version>
+  image_gallery_saver_plus: <latest_version>
+  permission_handler: <latest_version>
 ```
 
 ---
@@ -204,7 +204,7 @@ Pull requests and issues are welcome!
 
 * [PhotoView](https://pub.dev/packages/photo_view)
 * [CachedNetworkImage](https://pub.dev/packages/cached_network_image)
-* [ImageGallerySaver](https://pub.dev/packages/image_gallery_saver)
+* [image_gallery_saver_plus](https://pub.dev/packages/image_gallery_saver_plus)
 * [permission\_handler](https://pub.dev/packages/permission_handler)
 
 ## 👨‍💼 Author

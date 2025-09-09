@@ -1,19 +1,23 @@
 import 'package:cross_file/cross_file.dart';
 import 'package:flutter/material.dart';
-import 'package:reusable_image_widget/utils/image_downloader/download_image_util.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:reusable_image_widget/utils/image_downloader/i_image_downloader/i_image_downloader.dart';
+import 'package:reusable_image_widget/utils/image_downloader/image_downloader_impl.dart';
 
 class FullScreenViewerAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   const FullScreenViewerAppBar({
     super.key,
-    required this.pickedFile,
-    required this.imageSource,
+    this.pickedFile,
+    this.imageSource,
     this.title,
+    this.imageDownloader = const ImageDownloaderImpl(), // 👈 default value
   });
 
   final XFile? pickedFile;
   final String? imageSource;
   final String? title;
+  final IImageDownloader imageDownloader;
 
   @override
   Widget build(BuildContext context) {
@@ -36,10 +40,11 @@ class FullScreenViewerAppBar extends StatelessWidget
       tooltip: 'Download Image',
       icon: const Icon(Icons.download_rounded),
       onPressed: () async {
-        final result = await downloadImage(
+        final result = await imageDownloader.downloadImage(
           pickedFile: pickedFile,
           imageSource: imageSource,
         );
+
         if (!context.mounted) return;
         ScaffoldMessenger.of(
           context,
