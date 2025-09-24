@@ -66,7 +66,7 @@ class AvatarWithOnlineIndicator extends StatelessWidget {
                   shadow
                       ? <BoxShadow>[
                         BoxShadow(
-                          // color: Colors.grey.withOpacity(0.5),
+                          // color: Colors.grey.withAlpha((0.5 * 255).round()),
                           color: Colors.grey.withValues(alpha: 128),
                           spreadRadius: 2,
                           blurRadius: 5,
