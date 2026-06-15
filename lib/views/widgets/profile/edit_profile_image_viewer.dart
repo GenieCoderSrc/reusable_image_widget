@@ -36,8 +36,9 @@ class EditProfileImageViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap:
-          openFullScreenViewer ? () => _openFullScreenViewer(context) : null,
+      onDoubleTap: openFullScreenViewer
+          ? () => _openFullScreenViewer(context)
+          : null,
       child: Padding(
         padding: AvatarStyleConstants.avatarPadding,
         child: Stack(
@@ -62,15 +63,15 @@ class EditProfileImageViewer extends StatelessWidget {
   Widget _buildAvatar() {
     return isCircleAvatar ?? true
         ? AppCircleAvatar(
-          radius: radius,
-          imageSource: imageSource,
-          pickedFile: pickedFile,
-        )
+            radius: radius,
+            imageSource: imageSource,
+            pickedFile: pickedFile,
+          )
         : AppRectangleAvatar(
-          radius: radius,
-          imageSource: imageSource,
-          pickedFile: pickedFile,
-        );
+            radius: radius,
+            imageSource: imageSource,
+            pickedFile: pickedFile,
+          );
   }
 
   void _openFullScreenViewer(BuildContext context) {
@@ -79,12 +80,11 @@ class EditProfileImageViewer extends StatelessWidget {
 
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder:
-            (_) => FullScreenImageViewer(
-              imageSource: imageSource,
-              pickedFile: pickedFile,
-              heroTag: heroTag,
-            ),
+        builder: (_) => FullScreenImageViewer(
+          imageSource: imageSource,
+          pickedFile: pickedFile,
+          heroTag: heroTag,
+        ),
       ),
     );
   }

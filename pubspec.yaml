@@ -7,7 +7,7 @@ issue_tracker: https://github.com/GenieCoderSrc/reusable_image_widget/issues
 
 
 environment:
-  sdk: ^1.6.0
+  sdk: ^3.9.0
   flutter: ">=3.7.0"
 
 dependencies:

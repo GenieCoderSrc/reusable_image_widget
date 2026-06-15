@@ -1,8 +1,3 @@
-
-### 🔥 Latest Summary
-
-- Version 0.1.8: Updated core dependencies to ensure compatibility with the latest Flutter/Dart SDKs and improved internal stability.
-
 # 📄 CHANGELOG
 
 All notable changes to this project will be documented here.
@@ -30,12 +25,11 @@ All notable changes to this project will be documented here.
 
 ### 🔥 Latest Summary
 
-## 0.1.5
+## 0.1.8
 
-### Aug 16, 2025
+### Jun 15, 2026
 
 ### 🔥 Updated
 
-- Updated `http` dependency to `1.5.0`.
-- Removed `loading_builder` dependency.
+- Updated core dependencies to ensure compatibility with the latest Flutter/Dart SDKs and improved internal stability.
 

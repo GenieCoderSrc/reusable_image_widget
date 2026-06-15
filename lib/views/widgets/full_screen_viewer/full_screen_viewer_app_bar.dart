@@ -23,10 +23,9 @@ class FullScreenViewerAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.black,
-      title:
-          title != null
-              ? Text(title!, style: const TextStyle(color: Colors.white))
-              : null,
+      title: title != null
+          ? Text(title!, style: const TextStyle(color: Colors.white))
+          : null,
       iconTheme: const IconThemeData(color: Colors.white),
       actions: [_buildImageDownloaderAction(context)],
     );

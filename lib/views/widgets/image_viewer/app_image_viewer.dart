@@ -42,12 +42,11 @@ class AppImageViewer extends StatelessWidget {
       decoration: BoxDecoration(
         color: backgroundColor ?? Colors.grey.shade300,
         shape: isCircular ? BoxShape.circle : BoxShape.rectangle,
-        borderRadius:
-            isCircular
-                ? null
-                : (borderRadius != null
-                    ? BorderRadius.circular(borderRadius!)
-                    : null),
+        borderRadius: isCircular
+            ? null
+            : (borderRadius != null
+                  ? BorderRadius.circular(borderRadius!)
+                  : null),
       ),
       clipBehavior: clipBehavior ?? Clip.antiAlias,
       child: AppImageLoader(

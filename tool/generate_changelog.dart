@@ -7,12 +7,11 @@ void main() {
     exit(1);
   }
 
-  final entries =
-      changelogDir
-          .listSync()
-          .whereType<File>()
-          .where((file) => file.path.endsWith('.md'))
-          .toList();
+  final entries = changelogDir
+      .listSync()
+      .whereType<File>()
+      .where((file) => file.path.endsWith('.md'))
+      .toList();
 
   entries.sort((a, b) => b.path.compareTo(a.path)); // Descending by version
 

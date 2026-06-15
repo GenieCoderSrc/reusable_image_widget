@@ -54,25 +54,20 @@ class AvatarWithOnlineIndicator extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(border ? 2 : 0),
             decoration: BoxDecoration(
-              border:
-                  border
-                      ? Border.all(
-                        width: 2,
-                        color: Theme.of(context).primaryColor,
-                      )
-                      : null,
+              border: border
+                  ? Border.all(width: 2, color: Theme.of(context).primaryColor)
+                  : null,
               shape: BoxShape.circle,
-              boxShadow:
-                  shadow
-                      ? <BoxShadow>[
-                        BoxShadow(
-                          // color: Colors.grey.withAlpha((0.5 * 255).round()),
-                          color: Colors.grey.withValues(alpha: 128),
-                          spreadRadius: 2,
-                          blurRadius: 5,
-                        ),
-                      ]
-                      : null,
+              boxShadow: shadow
+                  ? <BoxShadow>[
+                      BoxShadow(
+                        // color: Colors.grey.withAlpha((0.5 * 255).round()),
+                        color: Colors.grey.withValues(alpha: 128),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                      ),
+                    ]
+                  : null,
             ),
             child: AppAvatar(
               isCircle: isCircleAvatar,

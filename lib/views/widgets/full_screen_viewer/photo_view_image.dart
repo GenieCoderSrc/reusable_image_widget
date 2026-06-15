@@ -32,12 +32,9 @@ class PhotoViewImage extends StatelessWidget {
     return PhotoView(
       imageProvider: imageProvider ?? const AssetImage(noImageAvailable),
       backgroundDecoration: const BoxDecoration(color: Colors.black),
-      errorBuilder:
-          (_, _, _) =>
-              errorBuilder ??
-              const Center(
-                child: Icon(Icons.broken_image, color: Colors.white),
-              ),
+      errorBuilder: (_, _, _) =>
+          errorBuilder ??
+          const Center(child: Icon(Icons.broken_image, color: Colors.white)),
       enableRotation: true,
       minScale: PhotoViewComputedScale.contained,
       maxScale: PhotoViewComputedScale.covered * 3,
