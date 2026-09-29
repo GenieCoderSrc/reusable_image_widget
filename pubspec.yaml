@@ -1,14 +1,15 @@
 name: reusable_image_widget
 description: "A reusable Flutter widget library for picking, cropping, compressing, and displaying images from gallery, camera, or network with full-screen preview support."
-version: 0.1.8
+version: 0.1.9
 homepage: https://github.com/GenieCoderSrc/reusable_image_widget
 repository: https://github.com/GenieCoderSrc/reusable_image_widget
 issue_tracker: https://github.com/GenieCoderSrc/reusable_image_widget/issues
 
 
 environment:
-  sdk: ^3.9.0
-  flutter: ">=3.7.0"
+  sdk: '>=3.6.0 <4.0.0'
+
+resolution: workspace
 
 dependencies:
   flutter:
@@ -16,8 +17,6 @@ dependencies:
 
 
   online_indicator: ^0.0.3
-
-
   photo_view: ^0.15.0
   image_picker: ^1.2.3
   cached_network_image: ^4.0.3
@@ -31,7 +30,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
