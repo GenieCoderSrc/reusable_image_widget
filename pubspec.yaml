@@ -7,8 +7,8 @@ issue_tracker: https://github.com/GenieCoderSrc/reusable_image_widget/issues
 
 
 environment:
-  sdk: ^3.9.0
-  flutter: ">=3.7.0"
+    sdk: '>=3.6.0 <4.0.0'
+resolution: workspace
 
 dependencies:
   flutter:
@@ -16,11 +16,9 @@ dependencies:
 
 
   online_indicator: ^0.0.3
-
-
   photo_view: ^0.15.0
   image_picker: ^1.2.3
-  cached_network_image: ^4.0.2
+  cached_network_image: ^4.0.3
   flutter_image_compress: ^2.5.1
   file_saver: ^0.6.0
   image_gallery_saver_plus: ^5.1.1
