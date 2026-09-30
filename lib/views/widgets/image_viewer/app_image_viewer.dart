@@ -45,8 +45,8 @@ class AppImageViewer extends StatelessWidget {
         borderRadius: isCircular
             ? null
             : (borderRadius != null
-                  ? BorderRadius.circular(borderRadius!)
-                  : null),
+                ? BorderRadius.circular(borderRadius!)
+                : null),
       ),
       clipBehavior: clipBehavior ?? Clip.antiAlias,
       child: AppImageLoader(

@@ -113,8 +113,8 @@ class AppImageResolver {
       fit: fit,
       width: width,
       height: height,
-      placeholder: (_, _) => placeholder ?? _defaultLoading(),
-      errorWidget: (_, _, _) => errorWidget ?? _defaultError(),
+      placeholder: (_, __) => placeholder ?? _defaultLoading(),
+      errorWidget: (_, __, ___) => errorWidget ?? _defaultError(),
     );
   }
 
@@ -141,7 +141,7 @@ class AppImageResolver {
   Widget Function(BuildContext, Object, StackTrace?) _errorBuilder(
     Widget? errorWidget,
   ) {
-    return (_, _, _) => errorWidget ?? _defaultError();
+    return (_, __, ___) => errorWidget ?? _defaultError();
   }
 
   Widget _defaultError() => const Icon(Icons.broken_image, size: 40);

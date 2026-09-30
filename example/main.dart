@@ -59,7 +59,6 @@ class _ImageViewerExampleState extends State<ImageViewerExample> {
               showEditIcon: true,
             ),
             const Divider(height: 40),
-
             const Text("2️⃣ Avatar With Online Indicator"),
             const SizedBox(height: 8),
             AvatarWithOnlineIndicator(
@@ -75,7 +74,6 @@ class _ImageViewerExampleState extends State<ImageViewerExample> {
               ).showSnackBar(const SnackBar(content: Text("Avatar tapped"))),
             ),
             const Divider(height: 40),
-
             const Text("3️⃣ AppAvatar Circle"),
             const SizedBox(height: 8),
             const AppAvatar(
@@ -85,7 +83,6 @@ class _ImageViewerExampleState extends State<ImageViewerExample> {
               backgroundColor: Colors.grey,
             ),
             const Divider(height: 40),
-
             const Text("4️⃣ AppAvatar Rectangle"),
             const SizedBox(height: 8),
             const AppAvatar(
@@ -95,7 +92,6 @@ class _ImageViewerExampleState extends State<ImageViewerExample> {
               backgroundColor: Colors.grey,
             ),
             const Divider(height: 40),
-
             const Text("5️⃣ Picked Image Preview"),
             const SizedBox(height: 8),
             AppImageViewer(

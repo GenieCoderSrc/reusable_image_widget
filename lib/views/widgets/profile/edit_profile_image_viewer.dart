@@ -36,9 +36,8 @@ class EditProfileImageViewer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onDoubleTap: openFullScreenViewer
-          ? () => _openFullScreenViewer(context)
-          : null,
+      onDoubleTap:
+          openFullScreenViewer ? () => _openFullScreenViewer(context) : null,
       child: Padding(
         padding: AvatarStyleConstants.avatarPadding,
         child: Stack(
