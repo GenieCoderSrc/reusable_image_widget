@@ -4,6 +4,7 @@ All notable changes to this project will be documented here.
 
 ### 🕘 Versions
 
+- [0.1.9](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.9.md)
 - [0.1.8](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.8.md)
 - [0.1.7](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.7.md)
 - [0.1.6](https://github.com/GenieCoderSrc/reusable_image_widget/blob/main/changelog/0.1.6.md)
